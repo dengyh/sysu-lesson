@@ -11,14 +11,9 @@ class Exchange(models.Model):
     lesson = models.ForeignKey(Lesson)
     phone = models.CharField(max_length = 16)
     email = models.EmailField(max_length = 64)
-    year = models.IntegerField()
-    term = models.IntegerField(choices = (
-        (0, u'上学期'),
-        (1, u'下学期'),
-        (2, u'小学期')
-    ))
     time = models.IntegerField()
     finish = models.BooleanField(default = False)
+    active = models.BooleanField(default = True)
 
     def __unicode__(self):
         return 'Exchange hold by ' + self.first_name + \

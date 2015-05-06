@@ -15,7 +15,7 @@ class Meterial(models.Model):
         (1, u'下学期'),
         (2, u'小学期')
     ))
-    url = models.CharField(max_length = 256)
+    file = models.FileField(max_length = 256)
     title = models.CharField(max_length = 256)
     remark = models.CharField(max_length = 256, null = True, blank = True)
     favour = models.IntegerField(default = 0)

@@ -42,6 +42,7 @@ INSTALLED_APPS = (
     'grade',
     'lesson',
     'meterial',
+    'school',
 )
 
 MIDDLEWARE_CLASSES = (
