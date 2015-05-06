@@ -15,4 +15,4 @@ class School(models.Model):
     class Meta:
         ordering = ['id']
         verbose_name = 'School'
-        cerbose_name = 'schools'
+        verbose_name = 'schools'

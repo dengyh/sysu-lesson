@@ -42,6 +42,7 @@ INSTALLED_APPS = (
     'grade',
     'lesson',
     'meterial',
+    'school',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -86,7 +87,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'sysu_lesson',
         'USER': 'root',
-        'PASSWORD': 'fy940705',
+        'PASSWORD': 'XXXXXXXXX',
         'HOST': 'localhost',
         'PORT': 3306,
     }
