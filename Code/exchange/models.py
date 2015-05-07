@@ -8,7 +8,10 @@ from lesson.models import Lesson
 
 class Exchange(models.Model):
     user = models.ForeignKey(User)
-    lesson = models.ForeignKey(Lesson)
+    lessonIn = models.ForeignKey(Lesson, blank=True, null=True,
+        on_delete = models.SET_NULL, related_name = 'lesson_in')
+    lessonOut = models.ForeignKey(Lesson, on_delete = models.SET_NULL,
+        related_name = 'lesson_out')
     phone = models.CharField(max_length = 16)
     email = models.EmailField(max_length = 64)
     time = models.IntegerField()
