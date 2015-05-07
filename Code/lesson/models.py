@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 from django.db import models
 
+from school.models import School
 # Create your models here.
 
 class Lesson(models.Model):
+    school = models.ForeignKey(School)
     title = models.CharField(max_length = 128)
     description = models.TextField(null = True, blank = True)
     campus = models.CharField(max_length = 16, choices = (

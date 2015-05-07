@@ -1,9 +1,11 @@
+# -*- coding: utf-8 -*-
 from django.db import models
 
 # Create your models here.
 
 class School(models.Model):
     name = models.CharField(max_length = 64, unique = True)
+    englishName = models.CharField(max_length = 64, null = True, blank = True)
     number = models.CharField(max_length = 128, unique = True)
     campus = models.CharField(max_length = 16, choices = (
         ('east', u'东校区'),
@@ -20,8 +22,9 @@ class School(models.Model):
         verbose_name = 'School'
         verbose_name_plural = 'Schools'
 
-def Department(models.Model):
+class Department(models.Model):
     name = models.CharField(max_length = 64, unique = True)
+    englishName = models.CharField(max_length = 64, null = True, blank = True)
     number = models.CharField(max_length = 128, unique = True)
     school = models.ForeignKey(School)
 
@@ -32,8 +35,9 @@ def Department(models.Model):
         verbose_name = 'Department'
         verbose_name_plural = 'Departments'
 
-def Profession(models.Model):
+class Major(models.Model):
     name = models.CharField(max_length = 64, unique = True)
+    englishName = models.CharField(max_length = 64, null = True, blank = True)
     number = models.CharField(max_length = 128, unique = True)
     department = models.ForeignKey(Department)
     school = models.ForeignKey(School)
@@ -42,5 +46,5 @@ def Profession(models.Model):
         return self.name
 
     class Meta:
-        verbose_name = 'Profession'
-        verbose_name_plural = 'Professions'
+        verbose_name = 'Major'
+        verbose_name_plural = 'Majors'
