@@ -9,11 +9,12 @@ from lesson.models import Lesson
 class Exchange(models.Model):
     user = models.ForeignKey(User)
     lessonIn = models.ForeignKey(Lesson, blank=True, null=True,
-        on_delete = models.SET_NULL, related_name = 'lesson_in')
-    lessonOut = models.ForeignKey(Lesson, on_delete = models.SET_NULL,
+        related_name = 'lesson_in')
+    lessonOut = models.ForeignKey(Lesson,
         related_name = 'lesson_out')
     phone = models.CharField(max_length = 16)
     email = models.EmailField(max_length = 64)
+    deadline = models.IntegerField(null = True, blank = True)
     time = models.IntegerField()
     finish = models.BooleanField(default = False)
     active = models.BooleanField(default = True)
@@ -23,6 +24,6 @@ class Exchange(models.Model):
             ' for lesson ' + str(self.lesson.id)
 
     class Meta:
-        ordering = ['year', 'term', 'time']
+        ordering = ['time']
         verbose_name = 'Exchange'
         verbose_name = 'Exchanges'
