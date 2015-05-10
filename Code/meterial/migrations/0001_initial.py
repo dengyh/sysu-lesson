@@ -19,7 +19,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('year', models.IntegerField()),
                 ('term', models.IntegerField(choices=[(0, '\u4e0a\u5b66\u671f'), (1, '\u4e0b\u5b66\u671f'), (2, '\u5c0f\u5b66\u671f')])),
-                ('url', models.CharField(max_length=256)),
+                ('file', models.FileField(max_length=256, upload_to=b'')),
                 ('title', models.CharField(max_length=256)),
                 ('remark', models.CharField(max_length=256, null=True, blank=True)),
                 ('favour', models.IntegerField(default=0)),
