@@ -1,2 +1,2 @@
 userId = 12330085
-password = ''
+password = 'fy940705'
