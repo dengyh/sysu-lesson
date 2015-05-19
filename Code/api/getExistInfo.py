@@ -42,10 +42,7 @@ def migrateLessonToDatabase():
         try:
             schoolObj = School.objects.get(number=schoolNumber)
         except:
-            schoolNamePattern = re.compile(r'"kkdwmc":"[^"]+"')
-            schoolName = schoolNamePattern.search(oneLesson).group()[10:-1]
-            schoolObj = School(name=schoolName, englishName='',number=schoolNumber)
-            schoolObj.save()
+            schoolObj = School.objects.get(number='69000')
         lessonIdPattern = re.compile(r'"kch":"[^"]+"')
         lessonId = lessonIdPattern.search(oneLesson).group()[7:-1]
         titlePattern = re.compile(r'"kcmc":"[^"]+"')
