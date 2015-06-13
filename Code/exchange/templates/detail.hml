@@ -65,70 +65,44 @@
 
 
     <div class="container">
-        <h2>浏览换课信息</h2>
-
-        <div><!-- Exchange info list -->
-          <div class="panel panel-primary">
-            <div class="panel-heading ">
-              <div class="h6 text-left">System Analysis and Design</div>
-              <div class="text-right">2015-06-01</div>
-            </div>
-            <div class="panel-body">
-              <div class="text-left">I'd like to exchange this course with an interesting one.</div>
-              <div class="text-right">PML</div>
-            </div>
-          </div>
-          <div class="panel panel-primary">
-            <div class="panel-heading">
-              <div class="h6 text-left">Software Testing</div>
-              <div class="text-right">2015-06-01</div>
-            </div>
-            <div class="panel-body">
-              <div class="text-left">I don't wanna read PPTs any more.</div>
-              <div class="text-right">SXD</div>
-            </div>
-          </div>
-          <div class="panel panel-primary">
-            <div class="panel-heading">
-              <p class="h6 text-left">Data Mining</p>
-              <p class="text-right">2015-06-01</p>
-            </div>
-            <div class="panel-body">
-              <div class="text-left">Visit Lanxiang, Shangdong in search of the best mining engineers ever.</div>
-              <div class="text-right">PY</div>
-            </div>
-          </div>
+        <h2>换课信息详情</h2>
     </div>
     <!-- /.container -->
 
-  <div class="container">
-    <div class="pagination pagination-success">
-      <ul>
-        <li class="previous"><a href="#fakelink" class="fui-arrow-left">前页</a></li>
-        <li class="active"><a href="#fakelink">1</a></li>
-        <li><a href="#fakelink">2</a></li>
-        <li><a href="#fakelink">3</a></li>
-        <li><a href="#fakelink">4</a></li>
-        <li><a href="#fakelink">5</a></li>
-        <li><a href="#fakelink">6</a></li>
-        <li><a href="#fakelink">7</a></li>
-        <li><a href="#fakelink">8</a></li>
-        <li><a href="#fakelink">9</a></li>
-        <li><a href="#fakelink">10</a></li>
-        <li class="pagination-dropdown dropdown">
-          <a href="#fakelink" class="dropdown-toggle" data-toggle="dropdown">
-            <i class="fui-triangle-down"></i>
-          </a>
-          <ul class="dropdown-menu">
-            <li><a href="#fakelink">10–20</a></li>
-            <li><a href="#fakelink">20–30</a></li>
-            <li><a href="#fakelink">40–50</a></li>
-          </ul>
-        </li>
-        <li class="next"><a href="#fakelink" class="fui-arrow-right">后页</a></li>
-      </ul>
-    </div>
-  </div>
+    <div class="container well center-block">
+      <div class="row">
+        <dl class="dl-horizontal col-sm-6">
+          <dt>计划换出的课程</dt>
+          <dd >SystemAnalysisAndDesign</dd>
+        </dl>
+        <dl class="dl-horizontal col-sm-6">
+          <dt>计划得到的课程</dt>
+          <dd>SoftwareTesting</dd>
+        </dl>
+        <dl class="dl-horizontal col-sm-6">
+          <dt>电话</dt>
+          <dd>13800138000</dd>
+        </dl>
+        <dl class="dl-horizontal col-sm-6">
+          <dt>Email</dt>
+          <dd>123@123.com</dd>
+        </dl>
+        <dl class="dl-horizontal col-sm-6">
+          <dt>截止日期</dt>
+          <dd>2015-09-01</dd>
+        </dl>
+        <dl class="dl-horizontal col-sm-6">
+          <dt>发布日期</dt>
+          <dd>2015-01-01</dd>
+        </dl>
+      <div class="col-xs-6">
+        <button type="submit" formaction="finish" class="btn btn-success center-block">完成</button>
+      </div>
+      <div clss="col-xs-6">
+        <button type="submit" formaction="cancel" class="btn btn-danger center-block">撤消</button>
+      </div>
+      </div>
+    </form>
 
     <!-- jQuery (necessary for Flat UI's JavaScript plugins) -->
     <script src="js/vendor/jquery.min.js"></script>
