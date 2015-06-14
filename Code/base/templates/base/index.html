@@ -1,0 +1,35 @@
+{% extends "base/base.html" %}
+
+{% block import %}
+{% load staticfiles %}
+<link href="{% static 'base/css/index.css' %}" rel="stylesheet" type="text/css">
+{% endblock import %}
+
+{% block main %}
+<div class="center">
+
+</div>
+
+<div class="row demo-row">
+    <div class="col-xs-4" style="background-color:#5d1709; height:300px;">
+        <h1>开发者</h1>
+        <p>
+            xiaoming<br>
+            daze<br>
+        </p>
+    </div>
+    <div class="col-xs-4" style="background-color:#0a8928; height:300px;">
+        <h1>最新功能</h1>
+        <p>
+            play<br>
+            learn<br>
+        </p>
+    </div>
+    <div class="col-xs-4" style="background-color:#290b60; height:300px;">
+        <h1>平台动态</h1>
+        <p>
+            happy<br>
+        </p>
+    </div>
+</div>
+{% endblock main %}
