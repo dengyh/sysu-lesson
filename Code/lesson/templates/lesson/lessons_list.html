@@ -1,0 +1,9 @@
+{% if lessons %}
+    <ul>
+    {% for lesson in lessons %}
+    <li><a href="/lesson/{{ lesson.pk }}/">{{ lesson.title }} {{lesson.school.name}}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No lessons are available.</p>
+{% endif %}
