@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Flat UI Free 101 Template</title>
+    <title>Create exchange</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Loading Bootstrap -->
@@ -40,7 +40,7 @@
           <form class="navbar-form navbar-left" action="#" role="search">
             <div class="form-group">
               <div class="input-group">
-                <input class="form-control" id="navbarInput-01" type="search" placeholder="Search">
+                <input class="form-control" type="search" placeholder="Search">
                 <span class="input-group-btn">
                   <button type="submit" class="btn"><span class="fui-search"></span></button>
                 </span>
@@ -125,7 +125,7 @@
 
         $('select[name="searchfield"]').select2({dropdownCssClass: 'show-select-search'});
         $('select[name="inverse-dropdown-searchfield"]').select2({dropdownCssClass: 'select-inverse-dropdown show-select-search'});
-        $('select[name="course"]').select2({dropdownCssClass: 'select-inverse-dropdown show-select-search'});
+        $('select[name="lessonOut"], select[name="lessonIn"]').select2({dropdownCssClass: 'select-inverse-dropdown show-select-search'});
       });
     </script>
   </body>
