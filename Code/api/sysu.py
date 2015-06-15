@@ -3,6 +3,8 @@ import pycurl
 import urllib
 import re
 import json
+import uuid
+import os
 
 from config import userId, password
 
@@ -43,15 +45,19 @@ postHeader = [
 
 cookiePattern = re.compile(r'(?<=Set-Cookie:\ )(.+?)(?=;)')
 codePattern = re.compile(r'(?<=HTTP/1.1\ )(.+?)(?=\ )')
+rnoPattern = re.compile(r'(?<=rno\"\ value=)(.+?)(?=\>)')
 
 class Sysuer:
-    def __init__(self, username, password):
-        self.cookie = None
-        self.username = username
-        self.password = password
+    def __init__(self, *args, **kwargs):
+        self.cookie = kwargs.get('cookie', None)
+        self.username = kwargs.get('username', None)
+        self.password = kwargs.get('password', None)
+        self.image = 'captcha/' + uuid.uuid1().hex + '.jpg'
+        self.rno = None
         self.urls = {
             'login': 'http://uems.sysu.edu.cn/jwxt/j_unieap_security_check.do',
             'cookie': 'http://uems.sysu.edu.cn/jwxt/',
+            'image': 'http://uems.sysu.edu.cn/jwxt/jcaptcha',
             'student': 'http://uems.sysu.edu.cn/jwxt/xscjcxAction/xscjcxAction.action?method=judgeStu',
             'score': 'http://uems.sysu.edu.cn/jwxt/xscjcxAction/xscjcxAction.action?method=getKccjList',
             'grade': 'http://uems.sysu.edu.cn/jwxt/xscjcxAction/xscjcxAction.action?method=getAllJd',
@@ -74,6 +80,7 @@ class Sysuer:
         connect.setopt(connect.HTTPHEADER, getHeader)
         connect.setopt(connect.HEADERFUNCTION, headerCallback)
         connect.setopt(connect.WRITEFUNCTION, callback)
+        connect.setopt(connect.COOKIE, self.cookie)
         connect.perform()
         connect.close()
 
@@ -100,6 +107,19 @@ class Sysuer:
     def passWrite(self, data):
         pass
 
+    def rnoWrite(self, data):
+        print data
+        result = rnoPattern.search(data)
+        if result:
+            self.rno = result.group()
+        pass
+
+    def saveImage(self, data):
+        path = 'media/' + self.image
+        file = open(path, 'wb')
+        file.write(data)
+        file.close()
+
     def loginHeader(self, headerLine):
         result = codePattern.search(headerLine)
         if result is not None:
@@ -113,16 +133,31 @@ class Sysuer:
             cookie = cookiePattern.search(headerLine).group()
             self.cookie = cookie
 
+    def getLoginData(self):
+        self.getCookie()
+        self.getImage()
+        self.getRno()
+
     def getCookie(self):
         self.getData(self.urls['cookie'],
             self.cookieHeaderFunction, self.passWrite)
 
-    def login(self):
+    def getImage(self):
+        self.getData(self.urls['image'],
+            self.passHeader, self.saveImage)
+
+    def getRno(self):
+        self.getData(self.urls['cookie'],
+            self.passHeader, self.rnoWrite)
+
+    def login(self, captcha, rno):
         if self.cookie is None:
-            self.getCookie()
+            raise Exception('The cookie is emtpy')
         self.postData(self.urls['login'], loginHeader, {
             'j_username': self.username,
             'j_password': self.password,
+            'rno': rno,
+            'jcaptcha_response': captcha,
             }, self.loginHeader, self.passWrite)
 
     def getStudentInformation(self):
@@ -148,7 +183,7 @@ class Sysuer:
         # pattern = re.compile(r'\{"xnd".+?\}')
         # results = pattern.finditer(buffer.getvalue())
         # return [item.group() for item in results]
-        print buffer.getvalue()
+        return buffer.getvalue()
 
     def getGrade(self, year='', term='', type=''):
         if self.cookie is None:
@@ -223,11 +258,12 @@ class Sysuer:
         return buffer.getvalue()
 
     # Magic, don't touch it
-    def getCourses(self, kkdw='62000', kch='', jxbh='', xnd='2013-2014', xq='', jxbmc='', kcmc='', lsmc=''):
+    def getCourses(self, kkdw='-1', kch='', jxbh='', xnd='2013-2014', xq='', jxbmc='', kcmc='', lsmc=''):
         if self.cookie is None:
             self.login()
         buffer = StringIO()
-        data = '''{header:{"code": -100, "message": {"title": "", "detail": ""}},body:{dataStores:{mdtzDataStore:{rowSet:{"primary":[],"filter":[],"delete":[]},name:"mdtzDataStore",pageNumber:1,pageSize:100000,recordCount:1938,rowSetName:"pojo_com.neusoft.education.sysu.xk.zxxkgg.model.KkblbModel",order:"  a.jxbh,a.resource_id desc "}},parameters:{"mdtzDataStore-params": [{"name": "Filter_kkdw_0.1794278455136572", "type": "String", "value": "'%s'", "condition": " != ", "property": "kkdw"}, {"name": "Filter_xnd_0.16680808189385443", "type": "String", "value": "'%s'", "condition": " = ", "property": "xnd"}], "args": []}}}''' % (kkdw, xnd)
+        data = '''{header:{"code": -100, "message": {"title": "", "detail": ""}},body:{dataStores:{mdtzDataStore:{rowSet:{"primary":[],"filter":[],"delete":[]},name:"mdtzDataStore",pageNumber:1,pageSize:100000,recordCount:1938,rowSetName:"pojo_com.neusoft.education.sysu.xk.zxxkgg.model.KkblbModel",order:"  a.jxbh,a.resource_id desc "}},parameters:{"mdtzDataStore-params": [{"name": "Filter_kkdw_0.1794278455136572", "type": "String", "value": "'%s'", "condition": " != ",
+        "property":"kkdw"}, {"name": "Filter_xnd_0.16680808189385443", "type": "String", "value": "'%s'", "condition": " = ", "property": "xnd"}], "args": []}}}''' % (kkdw, xnd)
         self.postData(self.urls['courses'], postHeader, data, self.passHeader, buffer.write)
         return buffer.getvalue()
 
@@ -249,6 +285,7 @@ class Sysuer:
 
 if __name__ == '__main__':
     dengyh = Sysuer(userId, password)
+    dengyh.getLoginData()
     # print dengyh.getStudentInformation()
     # print dengyh.getScore('2014-2015', '2', '01')
     # print dengyh.getGrade()
@@ -262,4 +299,4 @@ if __name__ == '__main__':
     # print dengyh.getAllDirections()
     # print dengyh.getResultOfCourseSelection()
     # print dengyh.getCourseTable('2014-2015', '2')
-    print dengyh.getCourses()
+    # print dengyh.getCourses()

@@ -1,0 +1,72 @@
+{% extends "base/base.html" %}
+
+{% block import %}
+{% load staticfiles %}
+<link href="{% static 'lesson/css/lessons_list.css' %}" rel="stylesheet" type="text/css">
+{% endblock import %}
+
+{% block main %}
+<div class="totle">
+    <div class="row">
+        <div class="span3" style="margin-left:50px;">
+            <select value="X-Men" class="span3" tabindex="1" name="herolist" style="height:35px;">
+                <option value="0" selected="selected">按课程名称查找</option>
+                <option value="1">按任课老师查找</option>
+                <option value="2">xx</option>
+                <option value="3">yy</option>
+            </select>
+        </div>
+        <div class="span3">
+            <div class="input_text">
+                <input type="text" value="" class="span3" placeholder="输入要查找的课程"/>
+            </div>
+        </div>
+        <div class="search">
+            <input type="submit" value="Search" class="btn btn-success">
+        </div>
+    </div>
+    {% if lessons %}
+    <div class="table">
+        <table>
+            <tr>
+                <th>课程名称</th>
+                <th>任课老师</th>
+                <th>课程类别</th>
+                <th>培养类别</th>
+                <th>所属校区</th>
+                <th>所属学院</th>
+                <th>推荐程度</th>
+            </tr>
+            {% for lesson in lessons %}
+           <tr>
+                <td><a href="{% url 'lesson:lesson_detail' lesson.id %}">{{ lesson.title }}</a></td>
+                <td>{{ lesson.teacher|truncatechars:18|default:'无教师信息' }}</td>
+                <td>{{ lesson.get_type_display }}</td>
+                <td>{{ lesson.get_teachType_display }}</td>
+                <td>{{ lesson.get_campus_display|default:'无校区信息' }}</td>
+                <td>{{ lesson.school.name }}</td>
+                <td>{{ lesson.get_evaluation }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    {% else %}
+    <p>System Error: There are no lessons in databases.</p>
+    {% endif %}
+</div>
+<div class="pagination">
+    <span class="step-links">
+        {% if lessons.has_previous %}
+            <a href="?page={{ lessons.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ lessons.number }} of {{ lessons.paginator.num_pages }}.
+        </span>
+
+        {% if lessons.has_next %}
+            <a href="?page={{ lessons.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>
+{% endblock main %}

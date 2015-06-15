@@ -17,7 +17,7 @@ class Lesson(models.Model):
         ('3', u'南校区'),
         ('1', u'珠海校区')
     ), null = True, blank = True)
-    teacher = models.TextField(null = True, blank = True) #老外的名字太长了
+    teacher = models.CharField(max_length=128, null = True, blank = True) #老外的名字太长了
     teachType = models.CharField(max_length = 4, choices = (
         ('01', u'主修'),
         ('02', u'辅修'),  #unkonw
@@ -32,6 +32,12 @@ class Lesson(models.Model):
     evaluationValue = models.IntegerField(default = 0)
     evaluationCount = models.IntegerField(default = 0)
 
+    def get_evaluation(self):
+        try:
+            return self.evaluationValue/self.evaluationCount
+        except:
+            return 0
+
     def __unicode__(self):
         return self.title
 
@@ -40,6 +46,7 @@ class Lesson(models.Model):
         self.evaluationCount += 1
 
     class Meta:
-        ordering = ['campus']
+        ordering = ['-evaluationCount', 'title']
         verbose_name = 'Lesson'
         verbose_name_plural = 'Lessons'
+        unique_together = ('lessonId', 'teacher', )
