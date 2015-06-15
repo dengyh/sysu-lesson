@@ -4,5 +4,9 @@
 }
 
 .reply-btn {
-	float:left;
+	float:right;
+}
+
+.commentArea {
+	width:100%;
 }

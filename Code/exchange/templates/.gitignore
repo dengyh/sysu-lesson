@@ -1,0 +1,17 @@
+js/flat-ui.js*
+js/prettify.js
+js/application.js
+js/vendor/
+
+css/flat-ui.css*
+css/vendor/
+
+fonts/lato/
+fonts/glyphicons/
+
+img/icons/
+img/favicon.ico
+
+*.swp
+*.*~
+

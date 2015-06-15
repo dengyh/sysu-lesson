@@ -112,10 +112,13 @@
         <div ><!--Comments area -->
           <div class="panel panel-primary">
             <div class="panel-body text-left">I'd like to exchange this course with an interesting one.</div>
-            <div class="panel-footer text-right">
-              <div class="reply-btn btn btn-primary">回复</div>
+            <div class="panel-footer text-left">
               <span>PML</span>
               <span>2015-06-01</span>
+              <div class="reply-btn btn btn-primary">回复</div>
+              <div>
+                <textarea row="1" class="commentArea"></textarea>
+              </div>
             </div>
           </div>
           <div class="panel panel-primary">
@@ -134,10 +137,9 @@
           </div>
         </div><!--Comments area end-->
         <div><!-- New comment -->
-          <textarea id="commentContent" row="3">
+          <textarea id="commentContent" row="3" class="commentArea">
           </textarea>
-          <div  class="btn btn-success" onclick="sendComment(commentContent.value)">发布
-          </div>
+          <div  class="btn btn-success" onclick="sendComment(commentContent.value)">评论</div>
         </div><!-- New comment end -->
       </div>
       <div class="col-md-4 container well">
@@ -150,7 +152,7 @@
           <li><a href="#" download class="col-md-6  col-sm-4 col-xs-12">Source5</a></li>
         </ul>
         <div class="text-center">
-          <input type="file">
+          <input type="file" id="fileUpload">
             <button type="submit" class="btn btn-success">发布</button>
           </input>
         </div>
