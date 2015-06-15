@@ -108,6 +108,7 @@ class Sysuer:
         pass
 
     def rnoWrite(self, data):
+        print data
         result = rnoPattern.search(data)
         if result:
             self.rno = result.group()
@@ -146,7 +147,7 @@ class Sysuer:
             self.passHeader, self.saveImage)
 
     def getRno(self):
-        self.getData(self.urls['login'],
+        self.getData(self.urls['cookie'],
             self.passHeader, self.rnoWrite)
 
     def login(self, captcha, rno):
