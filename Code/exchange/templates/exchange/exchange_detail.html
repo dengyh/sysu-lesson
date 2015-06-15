@@ -1,0 +1,56 @@
+<!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+<!--[if lt IE 9]>
+      <script src="js/vendor/html5shiv.js"></script>
+      <script src="js/vendor/respond.min.js"></script>
+    <![endif]-->
+{% extends 'base/base.html' %}
+
+{% block main %}
+<div class="container">
+    <h2>换课信息详情</h2>
+</div>
+<!-- /.container -->
+
+<div class="container well center-block">
+    <div class="row">
+        <dl class="dl-horizontal col-sm-6">
+            <dt>计划换出的课程</dt>
+            <dd >{{ exchange.lessonOut.title }}</dd>
+        </dl>
+        <dl class="dl-horizontal col-sm-6">
+            <dt>计划得到的课程</dt>
+            <dd>{{ exchange.lessonIn.title|default:'无' }}</dd>
+        </dl>
+        <dl class="dl-horizontal col-sm-6">
+            <dt>电话</dt>
+            <dd>{{ exchange.phone }}</dd>
+        </dl>
+        <dl class="dl-horizontal col-sm-6">
+            <dt>Email</dt>
+            <dd>{{ exchange.email }}</dd>
+        </dl>
+        <dl class="dl-horizontal col-sm-6">
+            <dt>截止日期</dt>
+            <dd>{{ exchange.deadline }}</dd>
+        </dl>
+        <dl class="dl-horizontal col-sm-6">
+            <dt>发布日期</dt>
+            <dd>{{ exchange.time }}</dd>
+        </dl>
+        {% if not_finished %}
+        <form action="{% url 'exchange:finish_exchange' exchange.id %}" method="post">
+        {% csrf_token %}
+        <div class="col-xs-6">
+            <button type="submit" class="btn btn-success center-block">完成</button>
+        </div>
+        </form> 
+        <form action="{% url 'exchange:cancel_exchange' exchange.id %}" method="post">
+        {% csrf_token %}
+        <div clss="col-xs-6">
+            <button type="submit" class="btn btn-danger center-block">撤消</button>
+        </div>
+        </form>
+        {% endif %}
+    </div>
+</form>
+{% endblock main %}

@@ -39,7 +39,7 @@
             </tr>
             {% for lesson in lessons %}
            <tr>
-                <td><a href="{% url 'lesson:lesson_detail' lesson.id %}">{{ lesson.title }}</a></td>
+                    <a href="{% url 'lesson:lesson_detail' lesson.id %}"><td>{{ lesson.title }}</td></a>
                 <td>{{ lesson.teacher|truncatechars:18|default:'无教师信息' }}</td>
                 <td>{{ lesson.get_type_display }}</td>
                 <td>{{ lesson.get_teachType_display }}</td>

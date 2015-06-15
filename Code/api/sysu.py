@@ -148,7 +148,7 @@ class Sysuer:
         # pattern = re.compile(r'\{"xnd".+?\}')
         # results = pattern.finditer(buffer.getvalue())
         # return [item.group() for item in results]
-        print buffer.getvalue()
+        return buffer.getvalue()
 
     def getGrade(self, year='', term='', type=''):
         if self.cookie is None:
@@ -223,11 +223,12 @@ class Sysuer:
         return buffer.getvalue()
 
     # Magic, don't touch it
-    def getCourses(self, kkdw='62000', kch='', jxbh='', xnd='2013-2014', xq='', jxbmc='', kcmc='', lsmc=''):
+    def getCourses(self, kkdw='-1', kch='', jxbh='', xnd='2013-2014', xq='', jxbmc='', kcmc='', lsmc=''):
         if self.cookie is None:
             self.login()
         buffer = StringIO()
-        data = '''{header:{"code": -100, "message": {"title": "", "detail": ""}},body:{dataStores:{mdtzDataStore:{rowSet:{"primary":[],"filter":[],"delete":[]},name:"mdtzDataStore",pageNumber:1,pageSize:100000,recordCount:1938,rowSetName:"pojo_com.neusoft.education.sysu.xk.zxxkgg.model.KkblbModel",order:"  a.jxbh,a.resource_id desc "}},parameters:{"mdtzDataStore-params": [{"name": "Filter_kkdw_0.1794278455136572", "type": "String", "value": "'%s'", "condition": " != ", "property": "kkdw"}, {"name": "Filter_xnd_0.16680808189385443", "type": "String", "value": "'%s'", "condition": " = ", "property": "xnd"}], "args": []}}}''' % (kkdw, xnd)
+        data = '''{header:{"code": -100, "message": {"title": "", "detail": ""}},body:{dataStores:{mdtzDataStore:{rowSet:{"primary":[],"filter":[],"delete":[]},name:"mdtzDataStore",pageNumber:1,pageSize:100000,recordCount:1938,rowSetName:"pojo_com.neusoft.education.sysu.xk.zxxkgg.model.KkblbModel",order:"  a.jxbh,a.resource_id desc "}},parameters:{"mdtzDataStore-params": [{"name": "Filter_kkdw_0.1794278455136572", "type": "String", "value": "'%s'", "condition": " != ",
+        "property":"kkdw"}, {"name": "Filter_xnd_0.16680808189385443", "type": "String", "value": "'%s'", "condition": " = ", "property": "xnd"}], "args": []}}}''' % (kkdw, xnd)
         self.postData(self.urls['courses'], postHeader, data, self.passHeader, buffer.write)
         return buffer.getvalue()
 
