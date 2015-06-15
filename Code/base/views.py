@@ -11,6 +11,8 @@ from api.sysu import Sysuer
 
 # Create your views here.
 
+@login_required
+@require_GET
 def index(request):
     return render(request, 'base/index.html')
 

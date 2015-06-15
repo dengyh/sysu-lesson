@@ -1,0 +1,57 @@
+.totle {
+  background-image: url('../images/wood_bg.jpg');
+  background-repeat: no-repeat;
+  height:650px;   
+  background-size: cover;
+}
+.first {
+  padding-top: 20px;
+}
+.back {
+  margin-left: 50px;
+  width: 100px;
+  float: left;
+}
+.change {
+  width: 150px;
+  float: left;
+  margin-left: 500px;
+}
+.write {
+  width: 150px;
+  margin-left: 700px;
+}
+h3 {
+  margin:0 0 0 200px;
+  font-weight: 900;
+  font-family: Georgia,Serif;
+  color: #96ff12;
+}
+.second {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+p {
+  margin: 10px 0 0 500px;
+  font-size: 25px;
+  font-weight: 900;
+  color: #96ff12;
+}
+.detail {
+  margin-top: 20px;
+}
+.info {
+  float: right;
+  margin-right: 530px;
+  height: 43px;
+}
+p.item {
+  margin: 0px 0 0 540px;
+  font-size: 25px;
+  font-weight: 900;    
+}
+.send {
+  clear: both;
+  margin: auto;
+  width: 100px;
+}

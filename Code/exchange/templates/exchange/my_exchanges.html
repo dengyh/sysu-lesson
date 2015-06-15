@@ -1,0 +1,37 @@
+{% extends 'base/base.html' %}
+
+{% block import %}
+{% load staticfiles %}
+<link type="text/css" rel="stylesheet" href="{% static 'exchange/css/my_exchanges.css' %}">
+{% endblock import %}
+
+{% block main %}
+<div class="totle">
+    <div class="name">
+        <h4>我发布的换课信息</h4>
+    </div>
+    {% if exchanges %}
+    <div class="table">
+        <table>
+            <tr>
+                <th>用于交换的课程</th>
+                <th>希望得到的课程</th>
+                <th>交换状态</th>
+                <th>发布时间</th>
+            </tr>
+            {% for exchange in exchanges %}
+            <tr>
+                <td><a href="{% url 'exchange:exchange_detail' exchange.id %}">{{ exchange.lessonOut.title }}</a></td>
+                <td>{{ exchange.lessonIn.title|default:'我只是想送一门课' }}</td>
+                <td>{{ exchange.get_state_display }}</td>
+                <td>{{ exchange.time }}</td>
+
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    {% else %}
+    <p>没有您的换课信息。</p>
+    {% endif %}
+</div>
+{% endblock main %}

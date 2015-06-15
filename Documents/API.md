@@ -16,8 +16,8 @@
 |“我的交易”页面|/exchange/home/|HTTP/GET||page(string)|HTTP/HTML|exchanges(array[Exchange])|
 |“新建交易”页面|/exchange/form/|HTTP/GET|||HTTP/HTML||
 |发布“交易”|/exchange/create/|HTTP/POST|lessonID(string)<br>phone(string)<br>email(string)||HTTP/HTML|刷新页面吧|
-|完成“交易”|/exchange/finish/|HTTP/POST|exchangeID(string)||HTTP/JSON|result(boolean)<br>message(string)|
-|取消“交易”|/exchange/cancel/|HTTP/POST|exchangeID(string)||HTTP/JSON|result(boolean)<br>message(string)|
+|完成“交易”|/exchange/([0-9]+)/finish/|HTTP/POST|exchangeID(string)||HTTP/JSON|result(boolean)<br>message(string)|
+|取消“交易”|/exchange/([0-9]+)/cancel/|HTTP/POST|exchangeID(string)||HTTP/JSON|result(boolean)<br>message(string)|
 
 -----------------------------
 
@@ -35,7 +35,7 @@
 |:---:|:------:|:-------:|:-----:|:-----:|:-----:|:-----:|
 |“课程列表”页面|/lesson/|HTTP/GET||page(string)<br>...(筛选项)|HTTP/HTML|lessons(array[Lesson])|
 |“课程详情”页面|/lesson/([0-9]+)/|HTTP/GET|||HTTP/GET|lesson(Lesson)|
-
+|“我的课程列表”页面|/lesson/home/|HTTP/GET||page(string)<br>...(筛选项)|HTTP/HTML|lessons(array[Lesson])|
 ----------------------------------
 
 ### Meterial App

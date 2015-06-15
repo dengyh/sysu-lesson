@@ -9,15 +9,16 @@ from lesson.models import Lesson
 class Grade(models.Model):
     user = models.ForeignKey(User)
     lesson = models.ForeignKey(Lesson)
-    year = models.IntegerField()
+    year = models.CharField(max_length=128)
     term = models.IntegerField(choices = (
-        (0, u'上学期'),
-        (1, u'下学期'),
-        (2, u'小学期')
+        (2, u'上学期'),
+        (3, u'下学期'),
+        (1, u'小学期'),
+        (4, u'未知')
     ))
     score = models.IntegerField()
-    ranking = models.IntegerField()
-    total = models.IntegerField()
+    ranking = models.IntegerField(null=True, blank=True)
+    total = models.IntegerField(null=True, blank=True)
 
     def __unicode__(self):
         return self.user.first_name + '\'s get ' + \
