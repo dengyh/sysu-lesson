@@ -1,9 +1,0 @@
-
-.login {
-  position: relative;
-  padding: 38px 38px 117px;
-  margin-bottom: 0;
-  color: #fff;
-  background: url(../img/login/imac.png) 0 0 no-repeat;
-  background-size: 940px 778px;
-  }

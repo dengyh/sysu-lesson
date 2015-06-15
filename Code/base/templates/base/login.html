@@ -1,14 +1,16 @@
 {% extends 'base/base.html' %}
 
+{% block title %}登录{% endblock %}
+
 {% block import %}
 {% load staticfiles %}
-<link type="text/css" rel="stylesheet" href="{% static 'base/css/login.css' %}">
+<link type="text/css" rel="stylesheet" href="{% static 'login/css/login.css' %}">
 {% endblock import %}
 
 {% block nav %}{% endblock nav %}
 
 {% block main %}
-<div class="login" style="background-size: 1350px 778px;">
+<div class="login">
     <div class="login-screen">
         <div class="login-icon">
             <img src="{% static 'base/images/login.png' %}" alt="Welcome to CURRICULUM" />
@@ -17,27 +19,31 @@
 
         <div class="login-form">
             <div class="form-group">
-                <form>
-                    <input type="text" class="form-control login-field" value="" placeholder="请输入教务系统账号" id="login-name" />
+                <form action="{% url 'base:login' %}" method="post">
+                {% csrf_token %}
+                    <div class="control-group">
+                        <input type="text" class="form-control login-field" value="" placeholder="请输入教务系统账号" id="login-name" name="username" />
+                        <label class="login-field-icon fui-user" for="login-name"></label>
+                    </div>
+                    <div class="control-group">
+                        <input type="password" class="form-control login-field" value="" placeholder="请输入密码" id="login-pass" name="password" />
+                        <label class="login-field-icon fui-lock" for="login-pass"></label>
+                    </div>
+                    <div class="control-group">
+                        <input type="text" class="form-control login-field" value="" placeholder="请输入验证码" id="login-pass" name="captcha" />
+                        <label class="login-field-icon" for="login-pass"><img id="captcha" src="{% url 'media' image %}"/></label>
+                    </div>
+                    <input type="hidden" id="login-cookie" name="cookie" value="{{ cookie }}">
+                    <input type="hidden" id="login-rno" name="rno" value="{{ rno }}">
+                    <button class="btn btn-primary confirm-button">登录</button
                 </form>
-                <label class="login-field-icon fui-user" for="login-name"></label>
             </div>
-            <div class="form-group">
-                <form>
-                    <input type="password" class="form-control login-field" value="" placeholder="请输入密码" id="login-pass" />
-                </form>
-                <label class="login-field-icon fui-lock" for="login-pass"></label>
-            </div>
-            <div class="form-group">
-                <form>
-                    <input type="yanzhengma" class="form-control login-field" value="" placeholder="请输入验证码" id="login-pass" />
-                </form>
-
-                <label class="login-field-icon" for="login-pass"><img src="http://uems.sysu.edu.cn/jwxt/jcaptcha"/></label>
-            </div>
-            <a class="btn btn-primary btn-lg btn-block" href="#">登陆</a>
             <p class="login-link">请使用教务系统账号登陆</a>
     </div>
 </div>
   </div>
 {% endblock main%}
+
+{% block js %}
+<script src="{% static 'login/js/login.js' %}"></script>
+{% endblock %}
