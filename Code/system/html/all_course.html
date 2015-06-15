@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Loading Bootstrap -->
+  <link href="../dist/css/vendor/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Loading Flat UI -->
+  <link href="../dist/css/flat-ui.css" rel="stylesheet">
+  <link href="../docs/assets/css/demo.css" rel="stylesheet">
+
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <link type="text/css" rel="stylesheet" href="../dist/all_course.css">
+</head>
+<body>
+  <div class="totle">
+    <div class="row">
+      <div class="span3" style="margin-left:50px;">
+        <select value="X-Men" class="span3" tabindex="1" name="herolist" style="height:35px;">
+          <option value="0" selected="selected">按课程名称查找</option>
+          <option value="1">按任课老师查找</option>
+          <option value="2">xx</option>
+          <option value="3">yy</option>
+        </select>
+      </div>
+      <div class="span3">
+        <div class="input_text">
+          <input type="text" value="" class="span3" placeholder="输入要查找的课程"/>
+        </div>
+      </div>
+      <div class="search">
+          <input type="submit" value="Search" class="btn btn-success">
+      </div>
+    </div>
+    <div class="table">
+      <table>
+        <tr>
+          <th>课程名称</th>
+          <th>任课老师</th>
+          <th>课程类别</th>
+          <th>培养类别</th>
+          <th>平均成绩</th>
+          <th>学分</th>
+          <th>推荐程度</th>
+        </tr>
+        <tr>
+          <td>系统分析与设计</td>
+          <td>潘茂林</td>
+          <td>专必</td>
+          <td>主修</td>
+          <td>80</td>
+          <td>3</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td>编译原理</td>
+          <td>冯剑琳</td>
+          <td>专必</td>
+          <td>主修</td>
+          <td>70</td>
+          <td>3</td>
+          <td>2</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</body>
+</html>

@@ -70,13 +70,12 @@
 
 <footer>{% block footer %}{% endblock %}</footer>
 
-
-{% block js %}
 <!-- jQuery (necessary for Flat UI's JavaScript plugins) -->
 <script src="{% static 'base/js/vendor/jquery.min.js' %}"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="{% static 'base/js/vendor/video.js' %}"></script>
 <script src="{% static 'base/js/flat-ui.min.js' %}"></script>
+{% block js %}
 <script src="{% static 'base/js/application.js' %}"></script>
 <script src="{% static 'base/js/base.js' %}"></script>
 {% endblock %}

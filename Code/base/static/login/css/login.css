@@ -1,0 +1,22 @@
+main {
+    width: 100%;
+    height: 100%;
+}
+
+.login {
+    position: relative;
+    padding: 38px 38px 117px;
+    margin-bottom: 0;
+    color: #fff;
+    background: url(../images/imac.png) 0 0 no-repeat;
+    background-size: 100% 123%;
+}
+
+.login-screen {
+    min-height: 512px;
+}
+
+.confirm-button {
+    width: 30%;
+    margin: 0 35%;
+}

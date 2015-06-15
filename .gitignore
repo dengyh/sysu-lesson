@@ -1,3 +1,10 @@
+# Temp file
+**/*~
+
+# Media file
+media/**/*.jpg
+media/**/*.png
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
