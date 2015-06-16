@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Exchange detail</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Loading Bootstrap -->
+    <link href="css/vendor/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Loading Flat UI -->
+    <link href="css/flat-ui.min.css" rel="stylesheet">
+
+    <link rel="shortcut icon" href="img/favicon.ico">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+    <!--[if lt IE 9]>
+      <script src="js/vendor/html5shiv.js"></script>
+      <script src="js/vendor/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+
+      <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-5">
+            <span class="sr-only">Toggle navigation</span>
+          </button>
+          <a class="navbar-brand" href="#">课霸</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="#">Courses</a></li>
+            <li><a href="#">Grades</a></li>
+            <li><a href="#">About Us</a></li>
+          </ul>
+          <form class="navbar-form navbar-left" action="#" role="search">
+            <div class="form-group">
+              <div class="input-group">
+                <input class="form-control" id="navbarInput-01" type="search" placeholder="Search">
+                <span class="input-group-btn">
+                  <button type="submit" class="btn"><span class="fui-search"></span></button>
+                </span>
+              </div>
+            </div>
+          </form>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">User <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Login</a></li>
+                <li><a href="#">Register</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li><a href="#">Separated link</a></li>
+              </ul>
+            </li>
+            <li><a href="#"><span class="visible-sm visible-xs">Settings<span class="fui-gear"></span></span><span class="visible-md visible-lg"><span class="fui-gear"></span></span></a></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </nav>
+
+
+    <div class="container">
+        <h2>换课信息详情</h2>
+    </div>
+    <!-- /.container -->
+
+    <div class="container well center-block">
+      <div class="row">
+        <dl class="dl-horizontal col-sm-6">
+          <dt>计划换出的课程</dt>
+          <dd >SystemAnalysisAndDesign</dd>
+        </dl>
+        <dl class="dl-horizontal col-sm-6">
+          <dt>计划得到的课程</dt>
+          <dd>SoftwareTesting</dd>
+        </dl>
+        <dl class="dl-horizontal col-sm-6">
+          <dt>电话</dt>
+          <dd>13800138000</dd>
+        </dl>
+        <dl class="dl-horizontal col-sm-6">
+          <dt>Email</dt>
+          <dd>123@123.com</dd>
+        </dl>
+        <dl class="dl-horizontal col-sm-6">
+          <dt>截止日期</dt>
+          <dd>2015-09-01</dd>
+        </dl>
+        <dl class="dl-horizontal col-sm-6">
+          <dt>发布日期</dt>
+          <dd>2015-01-01</dd>
+        </dl>
+      <div class="col-xs-6">
+        <button type="submit" formaction="finish" class="btn btn-success center-block">完成</button>
+      </div>
+      <div clss="col-xs-6">
+        <button type="submit" formaction="cancel" class="btn btn-danger center-block">撤消</button>
+      </div>
+      </div>
+    </form>
+
+    <!-- jQuery (necessary for Flat UI's JavaScript plugins) -->
+    <script src="js/vendor/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/vendor/video.js"></script>
+    <script src="js/flat-ui.min.js"></script>
+    <script src="js/application.js"></script>
+
+    <script>
+      $(document).ready(function(){
+        $('select[name="inverse-dropdown"], select[name="inverse-dropdown-optgroup"], select[name="inverse-dropdown-disabled"]').select2({dropdownCssClass: 'select-inverse-dropdown'});
+
+        $('select[name="searchfield"]').select2({dropdownCssClass: 'show-select-search'});
+        $('select[name="inverse-dropdown-searchfield"]').select2({dropdownCssClass: 'select-inverse-dropdown show-select-search'});
+        $('select[name="course"]').select2({dropdownCssClass: 'select-inverse-dropdown show-select-search'});
+      });
+    </script>
+  </body>
+</html>
