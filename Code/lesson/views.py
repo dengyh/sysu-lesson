@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 
 from .models import Lesson
 from comment.models import Comment
+from meterial.models import Meterial
 
 # Create your views here.
 @require_GET
@@ -35,7 +36,9 @@ def lesson_detail(request, lesson_id):
         raise Http404('Lesson does not exist...')
     user = request.user
     comments = Comment.objects.filter(user=user).filter(lesson=lesson)
+    meterials = Meterial.objects.filter(lesson=lesson)
     return render(request, 'lesson/lesson_detail.html', {
         'lesson': lesson,
         'comments': comments,
+        'meterials': meterials,
     })

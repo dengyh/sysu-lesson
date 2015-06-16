@@ -19,35 +19,35 @@
 <div class="container well center-block row">
     <dl class="dl-horizontal col-sm-6">
         <dt>名称</dt>
-        <dd >SystemAnalysisAndDesign</dd>
+        <dd >{{ lesson.title }}</dd>
     </dl>
     <dl class="dl-horizontal col-sm-6">
         <dt>描述</dt>
-        <dd>Course description</dd>
+        <dd>{{ lesson.description|default:'None' }}</dd>
     </dl>
     <dl class="dl-horizontal col-sm-6">
         <dt>课时</dt>
-        <dd>Week1-18 Web. 3`5</dd>
+        <dd>{{ lesson.classHour }}</dd>
     </dl>
     <dl class="dl-horizontal col-sm-6">
         <dt>学分</dt>
-        <dd>3</dd>
+        <dd>{{ lesson.credit }}</dd>
     </dl>
     <dl class="dl-horizontal col-sm-6">
         <dt>教师</dt>
-        <dd>PML</dd>
+        <dd>{{ lesson.teacher|truncatechars:20 }}</dd>
     </dl>
     <dl class="dl-horizontal col-sm-6">
         <dt>校区</dt>
-        <dd>East</dd>
+        <dd>{{ lesson.get_campus_display }}</dd>
     </dl>
     <dl class="dl-horizontal col-sm-6">
-        <dt>课室</dt>
-        <dd>B205</dd>
+        <dt>培养类别</dt>
+        <dd>{{ lesson.get_teachType_display }}</dd>
     </dl>
     <dl class="dl-horizontal col-sm-6">
-        <dt>类型</dt>
-        <dd>Public compulsory</dd>
+        <dt>课程类型</dt>
+        <dd>{{ lesson.get_type_display }}</dd>
     </dl>
 </div>
 
@@ -55,31 +55,23 @@
     <div class="col-md-8 container">
         <div class="h4 block-heading">评论</div>
         <div ><!--Comments area -->
+            {% if comments %}
+            {% for comment in comments %}
             <div class="panel panel-primary">
-                <div class="panel-body text-left">I'd like to exchange this course with an interesting one.</div>
+                <div class="panel-body text-left">{{ comment.content }}</div>
                 <div class="panel-footer text-left">
-                    <span>PML</span>
-                    <span>2015-06-01</span>
+                    <span>{{ comment.name }}</span>
+                    <span>{{ comment.time }}</span>
                     <div class="reply-btn btn btn-primary">回复</div>
                     <div>
                         <textarea row="1" class="commentArea"></textarea>
                     </div>
                 </div>
             </div>
-            <div class="panel panel-primary">
-                <div class="panel-body text-left">I don't wanna read PPTs any more.</div>
-                <div class="panel-footer text-right">
-                    <span>SXD</span>
-                    <span>2015-06-04</span>
-                </div>
-            </div>
-            <div class="panel panel-primary">
-                <div class="panel-body text-left">Visit Lanxiang, Shangdong in search of the best mining engineers ever.</div>
-                <div class="panel-footer text-right">
-                    <span>PY</span>
-                    <span>2015-04-01</span>
-                </div>
-            </div>
+            {% endfor %}
+            {% else %}
+            <p>暂时还没有评论哦。</p>
+            {% endif %}
         </div><!--Comments area end-->
         <div><!-- New comment -->
             <textarea id="commentContent" row="3" class="commentArea">
@@ -89,13 +81,15 @@
     </div>
     <div class="col-md-4 container well">
         <div class="h4 block-heading">资源</div>
+        {% if meterials %}
         <ul class="list-unstyled text-center">
-            <li><a href="#" download class="col-md-6  col-sm-4 col-xs-12">Source1</a></li>
-            <li><a href="#" download class="col-md-6  col-sm-4 col-xs-12">Source2</a></li>
-            <li><a href="#" download class="col-md-6  col-sm-4 col-xs-12">Source3</a></li>
-            <li><a href="#" download class="col-md-6  col-sm-4 col-xs-12">Source4</a></li>
-            <li><a href="#" download class="col-md-6  col-sm-4 col-xs-12">Source5</a></li>
+            {% for meterial in meterials %}
+            <li><a href="{{ meterial.file }}" download class="col-md-6  col-sm-4 col-xs-12">{{ meterial.title }}</a></li>
+            {% endfor %}
         </ul>
+        {% else %}
+        <p>快来分享您的课程资源啦！</p>
+        {% endif %}
         <div class="text-center">
             <input type="file" id="fileUpload">
             <button type="submit" class="btn btn-success">发布</button>

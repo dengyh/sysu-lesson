@@ -11,9 +11,9 @@ class Grade(models.Model):
     lesson = models.ForeignKey(Lesson)
     year = models.CharField(max_length=128)
     term = models.IntegerField(choices = (
-        (2, u'上学期'),
-        (3, u'下学期'),
-        (1, u'小学期'),
+        (1, u'上学期'),
+        (2, u'下学期'),
+        (3, u'小学期'),
         (4, u'未知')
     ))
     score = models.IntegerField()
@@ -28,3 +28,4 @@ class Grade(models.Model):
         ordering = ['year', 'term', 'user']
         verbose_name = 'Grade'
         verbose_name_plural = 'Grades'
+        unique_together = ('user', 'lesson',)

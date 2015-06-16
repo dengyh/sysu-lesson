@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_GET, require_POST
 
 from .models import Exchange
+from lesson.models import Lesson
 
 @login_required
 @require_GET
@@ -39,6 +40,7 @@ def my_exchanges(request):
 @require_GET
 def new_exchange(request):
     """ interface URL: /exchange/form/ """
+    
     return render(request, 'exchange/new_exchange.html')
 
 @login_required
