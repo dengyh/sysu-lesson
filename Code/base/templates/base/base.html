@@ -51,13 +51,12 @@
         </form>
         <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">User <b class="caret"></b></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ request.user.username }} <b class="caret"></b></a>
             <ul class="dropdown-menu">
-                <li><a href="#">Login</a></li>
-                <li><a href="#">Register</a></li>
-                <li><a href="#">Something else here</a></li>
+                <li><a href="#">我的成绩</a></li>
+                <li><a href="#">我的课程</a></li>
                 <li class="divider"></li>
-                <li><a href="#">Separated link</a></li>
+                <li><a href="{% url 'base:logout' %}">Log Out</a></li>
             </ul>
             </li>
             <li><a href="#"><span class="visible-sm visible-xs">Settings<span class="fui-gear"></span></span><span class="visible-md visible-lg"><span class="fui-gear"></span></span></a></li>

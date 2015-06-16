@@ -47,3 +47,9 @@ def login(request):
         'image': user.image,
         'rno': user.rno,
     })
+
+
+@require_GET
+def logout(request):
+    auth.logout(request)
+    return redirect('/')
