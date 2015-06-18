@@ -4,9 +4,15 @@ from django.core.urlresolvers import reverse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_GET, require_POST
+from django.utils import timezone
+import time
+from time import mktime
+from datetime import datetime
 
 from .models import Exchange
 from lesson.models import Lesson
+from api.getInfo import getSelectResults
+from api.sysu import Sysuer
 
 @login_required
 @require_GET
@@ -40,13 +46,38 @@ def my_exchanges(request):
 @require_GET
 def new_exchange(request):
     """ interface URL: /exchange/form/ """
-    
-    return render(request, 'exchange/new_exchange.html')
+    user = request.user
+    sysuer = Sysuer(username=user.username)
+    sysuer.cookie = request.session['cookie']
+    all_lessons = getSelectResults(user, sysuer)
+    lessons = [lesson for lesson in all_lessons if lesson.year=='2014-2015']
+    return render(request, 'exchange/new_exchange.html', {
+        'lessons': lessons,
+        })
 
 @login_required
 @require_POST
 def create_exchange(request):
     """ interface URL: /exchange/create/ """
+    lessonOut = request.POST['lessonOut']
+    user = request.user
+    lessonIn = request.POST['lessonIn']
+    phone = request.POST['phone']
+    email = request.POST['email']
+    time = timezone.now()
+    deadlineList = request.POST['deadline'].split('-')
+
+    exchange = Exchange(
+            user = user,
+            lessonOut = lessonOut,
+            lessonIn = lessonIn,
+            phone = phone,
+            email = email,
+            description = '',
+            time = time,
+            #deadline = deadline,
+    )
+    exchange.save()
     return HttpResponseRedirect(reverse('exchange:all_exchanges'))
 
 @login_required

@@ -31,6 +31,10 @@ class Lesson(models.Model):
     ))
     evaluationValue = models.IntegerField(default = 0)
     evaluationCount = models.IntegerField(default = 0)
+    gradeNumber = models.IntegerField(default = 0)
+
+    def add_grade_number(self):
+        self.gradeNumber += 1
 
     def get_evaluation(self):
         try:
@@ -46,7 +50,8 @@ class Lesson(models.Model):
         self.evaluationCount += 1
 
     class Meta:
-        ordering = ['-evaluationCount', 'title']
+        ordering = ['-evaluationCount', '-gradeNumber', 'title']
         verbose_name = 'Lesson'
         verbose_name_plural = 'Lessons'
         unique_together = ('lessonId', 'teacher', )
+

@@ -39,7 +39,7 @@ def login(request):
                 user.set_password(password)
                 user.save()
                 if created:
-                    getGrades(sysuer, user)
+                    getGrades(user, sysuer)
                 user = auth.authenticate(username=username, password=password)
                 auth.login(request, user)
                 return redirect(nextPage)

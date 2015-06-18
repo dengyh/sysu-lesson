@@ -8,6 +8,9 @@ from django.contrib.auth.decorators import login_required
 from .models import Lesson
 from comment.models import Comment
 from meterial.models import Meterial
+from api.myLesson import MyLesson
+from api.sysu import Sysuer
+from api.getInfo import getSelectResults
 
 # Create your views here.
 @require_GET
@@ -41,4 +44,16 @@ def lesson_detail(request, lesson_id):
         'lesson': lesson,
         'comments': comments,
         'meterials': meterials,
+    })
+
+@login_required
+@require_GET
+def select_result(request):
+    user = request.user
+    sysuer = Sysuer()
+    sysuer.username=user.username
+    sysuer.cookie=request.session['cookie']
+    lessons = getSelectResults(user, sysuer)
+    return render(request, 'lesson/select_result.html', {
+        'lessons': tuple(lessons),
     })

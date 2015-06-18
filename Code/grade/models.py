@@ -10,12 +10,12 @@ class Grade(models.Model):
     user = models.ForeignKey(User)
     lesson = models.ForeignKey(Lesson)
     year = models.CharField(max_length=128)
-    term = models.IntegerField(choices = (
-        (1, u'上学期'),
-        (2, u'下学期'),
-        (3, u'小学期'),
-        (4, u'未知')
-    ))
+    term = models.CharField(choices = (
+        ('2', u'上学期'),
+        ('3', u'下学期'),
+        ('1', u'小学期'),
+        ('4', u'未知')
+    ), max_length='16')
     score = models.IntegerField()
     ranking = models.IntegerField(null=True, blank=True)
     total = models.IntegerField(null=True, blank=True)
