@@ -2,8 +2,8 @@
 **/*~
 
 # Media file
-media/**/*.jpg
-media/**/*.png
+Code/media/**/*.jpg
+Code/media/**/*.png
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
