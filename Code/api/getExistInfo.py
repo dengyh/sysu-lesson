@@ -10,7 +10,7 @@ from school.models import School
 from lesson.models import Lesson
 
 user = Sysuer(userId, password)
-user.cookie = 'JSESSIONID=135792A197F235DEB7170E8976AE50C9'
+user.cookie = 'JSESSIONID=382DDF4BC1B9C489A2957581683C508B'
 
 xnd = [
     '2006-2007', '2007-2008', '2008-2009', '2009-2010',
@@ -24,26 +24,33 @@ def migrateSchoolToDatabase():
     results = pattern.finditer(schools)
     for item in results:
         oneSchool = item.group()
-        namePattern = re.compile(r'"yxsmc":"[^"]+"')
-        name = namePattern.search(oneSchool).group()[9:-1]
+        namePattern = re.compile(r'(?<="yxsmc":")([^"]+?)(?=")')
+        name = namePattern.search(oneSchool).group()
         print name
-        engNamePattern = re.compile(r'"yxsywmc":"[^"]+"')
+        engNamePattern = re.compile(r'(?<="yxsywmc":")([^"]+?)(?=")')
         try:
-            engName = engNamePattern.search(oneSchool).group()[11:-1]
+            engName = engNamePattern.search(oneSchool).group()
         except:
             engName = ''
-        numberPattern = re.compile(r'"yxsh":"[^"]+"')
-        number = numberPattern.search(oneSchool).group()[8:-1]
+        numberPattern = re.compile(r'(?<="yxsh":")([^"]+?)(?=")')
+        number = numberPattern.search(oneSchool).group()
         schoolObj = School(name=name,
                 englishName=engName, number=number)
         schoolObj.save();
 
+def totalSchools():
+    schools = user.getAllSchools()
+    pattern = re.compile(r'\{"[^\}]*"\}')
+    results = pattern.finditer(schools)
+    schools = [i.group() for i in results]
+    return schools
+
 def migrateOneLesson(oneLesson):
-    lessonIdPattern = re.compile(r'"kch":"[^"]+"')
-    lessonId = lessonIdPattern.search(oneLesson).group()[7:-1]
-    schoolPattern = re.compile(r'"kkdw":"[^"]+"')
+    lessonIdPattern = re.compile(r'(?<="kch":")([^"]+?)(?=")')
+    lessonId = lessonIdPattern.search(oneLesson).group()
+    schoolPattern = re.compile(r'(?<="kkdw":")([^"]+?)(?=")')
     try:
-        schoolNumber = schoolPattern.search(oneLesson).group()[8:-1]
+        schoolNumber = schoolPattern.search(oneLesson).group()
     except:
         schoolNumber = lessonId[:5]
     try:
@@ -51,60 +58,65 @@ def migrateOneLesson(oneLesson):
     except:
         schoolObj = School.objects.get(number='69000')
 
-    titlePattern = re.compile(r'"kcmc":"[^"]+"')
-    title = titlePattern.search(oneLesson).group()[8:-1]
-    descPattern = re.compile(r'"xddx":"[^"]+"')
+    titlePattern = re.compile(r'(?<="kcmc":")([^"]+?)(?=")')
+    title = titlePattern.search(oneLesson).group()
+    descPattern = re.compile(r'(?<="xddx":")([^"]+?)(?=")')
     try:
-        description = descPattern.search(oneLesson).group()[8:-1]
+        description = descPattern.search(oneLesson).group()
     except:
         description = ''
-    classHourPattern = re.compile(r'"xs":"[^"]+"')
+    classHourPattern = re.compile(r'(?<="xs":")([^"]+?)(?=")')
     try:
-        classHour = classHourPattern.search(oneLesson).group()[6:-1]
+        classHour = classHourPattern.search(oneLesson).group()
     except:
-        classHour = '0'
-    creditPattern = re.compile(r'"xf":"[^"]+"')
+        classHour = 'None'
+    creditPattern = re.compile(r'(?<="xf":")([^"]+?)(?=")')
     try:
-        credit = creditPattern.search(oneLesson).group()[6:-1]
+        credit = creditPattern.search(oneLesson).group()
     except:
-        credit = '0'
-    campusPattern = re.compile(r'"skjsszxq":"[^"]+"')
+        credit = 'None'
+    campusPattern = re.compile(r'(?<="skjsszxq":")([^"]+?)(?=")')
     try:
-        campus = campusPattern.search(oneLesson).group()[12:-1]
+        campus = campusPattern.search(oneLesson).group()
     except:
         campus = ''
-    teacherPattern = re.compile(r'"zjjsxm":"[^"]+"')
+    teacherPattern = re.compile(r'(?<="zjjsxm":")([^"]+?)(?=")')
     try:
-        teacher = teacherPattern.search(oneLesson).group()[10:-1]
+        teacher = teacherPattern.search(oneLesson).group()[:128]
     except:
         teacher = ''
-    teachTypePattern = re.compile(r'"pylb":"[^"]+"')
+    if '__' in teacher:
+        teacher = ''
+    print teacher
+    teachTypePattern = re.compile(r'(?<="pylb":")([^"]+?)(?=")')
     try:
-        teachType = teachTypePattern.search(oneLesson).group()[8:-1]
+        teachType = teachTypePattern.search(oneLesson).group()
     except:
         teachType = '01'
-    typePattern = re.compile(r'"kclb":"[^"]+"')
-    type = typePattern.search(oneLesson).group()[8:-1]
+    typePattern = re.compile(r'(?<="kclb":")([^"]+?)(?=")')
+    type = typePattern.search(oneLesson).group()
     try:
-        lessonObj = Lesson(school=schoolObj,
+        lessonObj = Lesson.objects.get(lessonId=lessonId, teacher=teacher)
+    except Lesson.DoesNotExist:
+        try:
+            lessonObj = Lesson.objects.create(school=schoolObj,
                         lessonId=lessonId,
                         title=title,
                         description=description,
                         classHour=classHour,
                         credit=credit,
                         campus=campus,
-                        teacher=teacher[:128],
+                        teacher=teacher,
                         teachType=teachType,
                         type=type)
-        lessonObj.save()
-        return lessonObj
-    except:
-        pass
+        except:
+            pass
 
 
 def migrateLessonToDatabase():
     for year in xnd:
         lessons = user.getCourses(xnd=year)
+        print lessons
         pattern = re.compile(r'\{"[^\}]*"\}')
         results = pattern.finditer(lessons)
         for item in results:

@@ -10,7 +10,8 @@ class Comment(models.Model):
     user = models.ForeignKey(User)
     lesson = models.ForeignKey(Lesson)
     content = models.TextField(null = True, blank = True)
-    time = models.IntegerField()
+    time = models.DateTimeField()
+    name = models.CharField(max_length=64, default='Sysuer')
     follow = models.ForeignKey('self', null = True, blank = True)
 
     def __unicode__(self):

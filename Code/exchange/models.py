@@ -9,7 +9,7 @@ from lesson.models import Lesson
 class Exchange(models.Model):
     user = models.ForeignKey(User)
     lessonIn = models.CharField(max_length=128, blank=True, null=True)
-    lessonOut = models.ForeignKey(Lesson)
+    lessonOut = models.CharField(max_length=128)
     phone = models.CharField(max_length = 16)
     email = models.EmailField(max_length = 64)
     description = models.TextField(null = True, blank = True)

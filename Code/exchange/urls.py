@@ -1,4 +1,5 @@
 from django.conf.urls import url
+
 from . import views
 
 urlpatterns = [
@@ -8,5 +9,5 @@ urlpatterns = [
     url(r'^create/$', views.create_exchange, name='create_exchange'),
     url(r'^(?P<exchange_id>[0-9]+)/finish/$', views.finish_exchange, name='finish_exchange'),
     url(r'^(?P<exchange_id>[0-9]+)/cancel/$', views.cancel_exchange, name='cancel_exchange'),
-    url(r'^(?P<exchange_id>[0-9]+)/$', views.exchange_detail, name='exchange_detail')
+    url(r'^(?P<exchange_id>[0-9]+)/$', views.exchange_detail, name='exchange_detail'),
 ]

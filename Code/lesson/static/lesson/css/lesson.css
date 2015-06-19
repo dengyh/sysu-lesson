@@ -1,0 +1,12 @@
+#belowPart {
+	width: 90%;
+	margin: auto;
+}
+
+.reply-btn {
+	float:right;
+}
+
+.commentArea {
+	width:100%;
+}
