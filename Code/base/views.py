@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 
 from api.sysu import Sysuer
+from api.getInfo import getGrades
 
 # Create your views here.
 
@@ -26,9 +27,9 @@ def login(request):
         captcha = request.POST.get('captcha', None)
         rno = request.POST.get('rno', None)
         if username and password and cookie and captcha and rno:
-            user = Sysuer(username=username, password=password, cookie=cookie)
+            sysuer = Sysuer(username=username, password=password, cookie=cookie)
             try:
-                user.login(captcha, rno)
+                sysuer.login(captcha, rno)
                 success = True
             except:
                 success = False
@@ -37,6 +38,8 @@ def login(request):
                 user, created = User.objects.get_or_create(username=username)
                 user.set_password(password)
                 user.save()
+                if created:
+                    getGrades(user, sysuer)
                 user = auth.authenticate(username=username, password=password)
                 auth.login(request, user)
                 return redirect(nextPage)
@@ -52,4 +55,4 @@ def login(request):
 @require_GET
 def logout(request):
     auth.logout(request)
-    return redirect('/logint/')
+    return redirect('/login/')

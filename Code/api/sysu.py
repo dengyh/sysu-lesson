@@ -283,7 +283,7 @@ class Sysuer:
 
 if __name__ == '__main__':
     dengyh = Sysuer(userId, password)
-    dengyh.getLoginData()
+    #dengyh.getLoginData()
     # print dengyh.getStudentInformation()
     # print dengyh.getScore('2014-2015', '2', '01')
     # print dengyh.getGrade()

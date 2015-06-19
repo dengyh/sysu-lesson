@@ -1,66 +1,93 @@
+# -*- coding: utf-8 -*-
 from sysu import Sysuer
+from myLesson import MyLesson
 
-from .getExistInfo import migrateOneLesson
 import re
 import sys
 sys.path.append('..')
 from lesson.models import Lesson
 from django.contrib.auth.models import User
 from grade.models import Grade
+from school.models import School
+from lesson.models import Lesson
 
-def getGrades(jwxt_user, user):
+def getGrades(user, jwxt_user):
     gradesStr = jwxt_user.getScore()
     pattern = pattern = re.compile(r'\{"[^\}]*"\}')
     results = pattern.finditer(gradesStr)
     for item in results:
         grade = item.group()
-        lessonIdPattern = re.compile(r'"kch":"[^"]+"')
         try:
-            lessonId = lessonIdPattern.search(grade).group()[7:-1]
-        except:
-            lesson = migrateOneLesson(grade)
-        else:
-            teacherPattern = re.compile(r'"jsxm":"[^"]+"')
+            lessonIdPattern = re.compile(r'(?<="kch":")([^"]+?)(?=")')
+            lessonId = lessonIdPattern.search(grade).group()
+            teacherPattern = re.compile(r'(?<="jsxm":")([^"]+?)(?=")')
             try:
-                teacher = teacherPattern.search(grade).group()[8:-1]
+                teacher = teacherPattern.search(grade).group()
             except:
                 teacher = ''
-            lessons = Lesson.objects.filter(lessonId=lessonId).filter(
-                    teacher=teacher)
+            lesson = Lesson.objects.get(lessonId=lessonId, teacher=teacher)
+        except Lesson.DoesNotExist:
+            schoolNumber = lessonId[:5]
             try:
-                lesson = lessons[0]
+                schoolObj = School.objects.get(number=schoolNumber)
             except:
-                lesson = migrateOneLesson(grade)
-        yearPattern = re.compile(r'"xnd":"[^"]+"')
+                schoolObj = School.objects.get(number='69000')
+            titlePattern = re.compile(r'(?<="kcmc":")([^"]+?)(?=")')
+            title = titlePattern.search(grade).group()
+            classHour = 'None'
+            creditPattern = re.compile(r'(?<="xf":")([^"]+?)(?=")')
+            try:
+                credit = creditPattern.search(grade).group()
+            except:
+                credit = '0'
+            campus = ''
+            teachType = '01'
+            typePattern = re.compile(r'(?<="kclb":")([^"]+?)(?=")')
+            type = typePattern.search(grade).group()
+            lesson = Lesson(school=schoolObj,
+                        lessonId=lessonId,
+                        title=title,
+                        description='',
+                        classHour=classHour,
+                        credit=credit,
+                        campus=campus,
+                        teacher=teacher[:128],
+                        teachType=teachType,
+                        type=type
+             )
+            lesson.save()
+        yearPattern = re.compile(r'(?<="xnd":")([^"]+?)(?=")')
         try:
-            year = yearPattern.search(grade).group()[7:-1]
+            year = yearPattern.search(grade).group()
         except:
             year = 'unknow'
-        scorePattern = re.compile(r'"zzcj":"[^"]+"')
+        scorePattern = re.compile(r'(?<="zzcj":")([^"]+?)(?=")')
         try:
-            score = scorePattern.search(grade).group()[8:-1]
+            score = int(scorePattern.search(grade).group())
         except:
             continue
-        rankPattern = re.compile(r'"jxbpm":"[^"]+"')
+        rankPattern = re.compile(r'(?<="jxbpm":")([^"]+?)(?=")')
         try:
-            rank = rankPattern.search(grade).group()[9:-1]
+            rank = rankPattern.search(grade).group()
         except:
-            continue
+            ranking = int
+            total = int
         else:
             rank_list = map(int, re.findall(r'\d+', rank))
             try:
                 ranking = rank_list[0]
                 total = rank_list[1]
             except:
-                ranking = None
-                total = None
-        termPattern = re.compile(r'"xq":"[^"]+"')
+                ranking = int
+                total = int
+        termPattern = re.compile(r'(?<="xq":")([^"]+?)(?=")')
         try:
-            termStr = termPattern.search(grade).group()[6:-1]
-            term = int(termStr)
+            term = termPattern.search(grade).group()
         except:
-            term = 4
+            term = '4'
         try:
+            gradeObj = Grade.objects.get(user=user, lesson=lesson)
+        except Grade.DoesNotExist:
             gradeObj = Grade(
                     user=user,
                     lesson=lesson,
@@ -71,5 +98,48 @@ def getGrades(jwxt_user, user):
                     total=total
             )
             gradeObj.save()
+            lesson.add_grade_number()
+            lesson.save()
+
+def getSelectResults(user, sysuer):
+    select_results = []
+    resultsStr = sysuer.getResultOfCourseSelection()
+    pattern = pattern = re.compile(r'\{"[^\}]*"\}')
+    results = pattern.finditer(resultsStr)
+    for item in results:
+        result = item.group()
+        yearPattern = re.compile(r'(?<="xnd":")([^"]+?)(?=")')
+        year = yearPattern.search(result).group()
+        termPattern = re.compile(r'(?<="xq":")([^"]+?)(?=")')
+        term = termPattern.search(result).group()
+        teacherPattern = re.compile(r'(?<="xm":")([^"]+?)(?=")')
+        try:
+            teacher = teacherPattern.search(result).group()
         except:
-            pass
+            teacher = u'无教师信息'
+        teachTypePattern = re.compile(r'(?<="pylbm":")([^"]+?)(?=")')
+        teachType = teachTypePattern.search(result).group()
+        lessonTypePattern = re.compile(r'(?<="kclbm":")([^"]+?)(?=")')
+        lessonType = lessonTypePattern.search(result).group()
+        lessonIdPattern = re.compile(r'(?<="kch":")([^"]+?)(?=")')
+        lessonId = lessonIdPattern.search(result).group()
+        creditPattern = re.compile(r'(?<="xf":")([^"]+?)(?=")')
+        credit = creditPattern.search(result).group()
+        schoolPattern = re.compile(r'(?<="kkdw":")([^"]+?)(?=")')
+        school = schoolPattern.search(result).group()
+        namePattern = re.compile(r'(?<="kcmc":")([^"]+?)(?=")')
+        name = namePattern.search(result).group()
+        timePattern = re.compile(r'(?<="sksjdd":")([^"]+?)(?=")')
+        try:
+            time = timePattern.search(result).group()
+        except:
+            time = u'无上课时间和地点信息'
+        my_lesson = MyLesson(year=year,
+                term=term, teacher=teacher,
+                teachType=teachType, lessonType=lessonType,
+                lessonId=lessonId, credit=credit, school=school,
+                name=name, time=time)
+        select_results.append(my_lesson)
+    return select_results
+
+
