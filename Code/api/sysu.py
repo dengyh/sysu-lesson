@@ -108,11 +108,9 @@ class Sysuer:
         pass
 
     def rnoWrite(self, data):
-        print data
         result = rnoPattern.search(data)
         if result:
             self.rno = result.group()
-        pass
 
     def saveImage(self, data):
         path = 'media/' + self.image

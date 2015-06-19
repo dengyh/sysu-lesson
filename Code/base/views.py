@@ -46,4 +46,10 @@ def login(request):
         'cookie': user.cookie,
         'image': user.image,
         'rno': user.rno,
+        'test': {'haha': 'haha'}
     })
+
+@require_GET
+def logout(request):
+    auth.logout(request)
+    return redirect('/logint/')

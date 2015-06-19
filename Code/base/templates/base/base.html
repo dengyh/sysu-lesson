@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=0">
-<title>{% block title %}{% endblock %}</title>
-<!-- <link rel="shortcut icon" type="image/icon" href="/base/static/images/favo.ico" /> -->
-{% load staticfiles %}
-<!-- Loading Logo -->
-<link rel="shortcut icon" href="{% static 'base/image/logo.ico' %}">
-<!-- Loading Bootstrap -->
-<link href="{% static 'base/css/vendor/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
-<!-- Loading Flat UI -->
-<link href="{% static 'base/css/flat-ui.css' %}" rel="stylesheet" type="text/css">
-<link href="{% static 'base/css/demo.css' %}" rel="stylesheet" type="text/css">
-<!-- Loading base.css -->
-<link href="{% static 'base/css/base.css' %}" rel="stylesheet" type="text/css">
-{% block import %}{% endblock %}
+    <meta http-equiv="Content-Type" charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=0">
+    <title>{% block title %}{% endblock %}</title>
+    <!-- <link rel="shortcut icon" type="image/icon" href="/base/static/images/favo.ico" /> -->
+    {% load staticfiles %}
+    <!-- Loading Logo -->
+    <link rel="shortcut icon" href="{% static 'base/image/logo.ico' %}">
+    <!-- Loading Bootstrap -->
+    <link href="{% static 'base/css/vendor/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
+    <!-- Loading Flat UI -->
+    <link href="{% static 'base/css/flat-ui.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'base/css/demo.css' %}" rel="stylesheet" type="text/css">
+    <!-- Loading base.css -->
+    <link href="{% static 'base/css/base.css' %}" rel="stylesheet" type="text/css">
+    {% block import %}{% endblock %}
 </head>
 
 <body>
@@ -23,7 +23,7 @@
 
 
 {% block nav %}
-<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+<nav class="navbar navbar-inverse navbar-static-top" role="navigation" id="base-nav">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-5">
@@ -51,16 +51,15 @@
         </form>
         <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">User <b class="caret"></b></a>
-            <ul class="dropdown-menu">
-                <li><a href="#">Login</a></li>
-                <li><a href="#">Register</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li class="divider"></li>
-                <li><a href="#">Separated link</a></li>
-            </ul>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ user.username }}<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">我的成绩</a></li>
+                    <li><a href="#">换课记录</a></li>
+                    <li><a href="#">选课结果</a></li>
+                    <li class="divider"></li>
+                    <li><a href="{% url 'base:logout' %}">注销</a></li>
+                </ul>
             </li>
-            <li><a href="#"><span class="visible-sm visible-xs">Settings<span class="fui-gear"></span></span><span class="visible-md visible-lg"><span class="fui-gear"></span></span></a></li>
         </ul>
     </div><!-- /.navbar-collapse -->
 </nav>

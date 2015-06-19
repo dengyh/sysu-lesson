@@ -1,35 +1,34 @@
 {% extends "base/base.html" %}
 
+{% block title %}首页{% endblock %}
+
 {% block import %}
 {% load staticfiles %}
 <link href="{% static 'base/css/index.css' %}" rel="stylesheet" type="text/css">
 {% endblock import %}
 
 {% block main %}
-<div class="center">
-
+<div class="index-image">
+    <img src="{% static 'base/images/background2.png' %}" alt="中山大学">
 </div>
-
-<div class="row demo-row">
-    <div class="col-xs-4" style="background-color:#5d1709; height:300px;">
-        <h1>开发者</h1>
-        <p>
-            xiaoming<br>
-            daze<br>
-        </p>
+<div class="index-icon row">
+    <div class="function-icon col-md-4">
+        <a href="#">
+            <img src="{% static 'base/images/icon-lesson.png' %}">
+            <p>课程统计</p>
+        </a>
     </div>
-    <div class="col-xs-4" style="background-color:#0a8928; height:300px;">
-        <h1>最新功能</h1>
-        <p>
-            play<br>
-            learn<br>
-        </p>
+    <div class="function-icon col-md-4">
+        <a href="#">
+            <img src="{% static 'base/images/icon-exchange.png' %}">
+            <p>交换课程</p>
+        </a>
     </div>
-    <div class="col-xs-4" style="background-color:#290b60; height:300px;">
-        <h1>平台动态</h1>
-        <p>
-            happy<br>
-        </p>
+    <div class="function-icon col-md-4">
+        <a href="#">
+            <img src="{% static 'base/images/icon-personal.png' %}">
+            <p>个人成绩</p>
+        </a>
     </div>
 </div>
 {% endblock main %}
