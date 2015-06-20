@@ -16,11 +16,11 @@
     <div class="form-group">
         <div class="input-group">
             <label class="control-label input-group-addon" for="lessonIn">计划换出的课程</label>
-            <select data-toggle="select" name="lessonIn" class="select select-primary select-block mbl form-control">
+            <select data-toggle="select" name="lessonOut" class="select select-primary select-block mbl form-control">
                 {% if lessons %}
-                <option value="SystemAnalysisDesign">SystemAnalysisDesign</option>
-                <option value="SoftwareTesting">SoftwareTesting</option>
-                <option value="DataMining">DataMinging</option>
+                {% for lesson in lessons %}
+                <option value="{{ lesson.name }}">{{ lesson.name }}</option>
+                {% endfor %}
                 {% else %}
                 <option value="">你没有可换出的课程=。=</option>
                 {% endif %}
@@ -30,7 +30,7 @@
     <div class="form-group">
         <div class="input-group">
             <label class="control-label input-group-addon" for="lessonOut">计划得到的课程</label>
-            <select data-toggle="select" name="lessonOut" class="select select-primary select-block mbl form-control">
+            <select data-toggle="select" name="lessonIn" class="select select-primary select-block mbl form-control">
                 <option value="">空（我只是想送出一门课而已）</option>
                 <option value="SoftwareTesting">SoftwareTesting</option>
                 <option value="DataMining">DataMinging</option>
@@ -55,6 +55,6 @@
             <input type="date" class="form-control" name="deadline" placeholder="请输入信息的最后有效日期。"></input>
         </div>
     </div>
-    <button type="submit" formaction="create" class="form-control">发布</button>
+    <button type="submit" class="form-control">发布</button>
 </form>
 {% endblock main %}

@@ -18,7 +18,8 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('content', models.TextField(null=True, blank=True)),
-                ('time', models.IntegerField()),
+                ('time', models.DateTimeField()),
+                ('name', models.CharField(default=b'Sysuer', max_length=64)),
                 ('follow', models.ForeignKey(blank=True, to='comment.Comment', null=True)),
                 ('lesson', models.ForeignKey(to='lesson.Lesson')),
                 ('user', models.ForeignKey(to=settings.AUTH_USER_MODEL)),

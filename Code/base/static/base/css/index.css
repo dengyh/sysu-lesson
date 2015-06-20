@@ -1,17 +1,30 @@
+.index-image {
+    width: 100%;
+    border: 20px solid rgb(52,73,94);
+}
 
-h1
-{
-  text-align:center;
+.index-image img {
+    width: 100%;
+    height: 400px;
 }
-p
-{
-  text-align:center;
+
+.index-icon {
+    width: 100%;
+    margin-top: 30px;
 }
-.center {
-  background-image: url('../images/background.jpg');
-  background-repeat: no-repeat;
-  height:300px;   
-  background-size: cover;
-  margin-top: 5px;
-  margin-bottom: 5px;
+
+.function-icon a img {
+    width: 20%;
+    margin: 0 40%;
+}
+
+.function-icon a p {
+    margin-top: 10px;
+    text-align: center;
+    transition: all 0.5s;
+    font-weight: bolder;
+}
+
+.function-icon a:hover p {
+    color: rgb(52,73,94);
 }

@@ -1,5 +1,10 @@
 {% extends 'base/base.html' %}
 
+{% block import %}
+{% load staticfiles %}
+<link href="{% static 'exchange/css/all_exchanges.css' %}" rel="stylesheet" type="text/css">
+{% endblock import %}
+
 {% block main %}
 <div class="container">
     <h2>浏览换课信息</h2>
