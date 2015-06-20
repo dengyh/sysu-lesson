@@ -1,5 +1,6 @@
 # Temp file
 **/*~
+*.swp
 
 # Media file
 media/**/*.jpg

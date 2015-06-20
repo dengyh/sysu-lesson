@@ -33,7 +33,7 @@
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse">
+        <div class="collapse navbar-collapse" id="navbar-collapse-5">
           <ul class="nav navbar-nav">
             <li><a href="#">Courses</a></li>
             <li><a href="#">Grades</a></li>
@@ -104,6 +104,8 @@
         <dt>类型</dt>
         <dd>Public compulsory</dd>
       </dl>
+      <div><!-- Evaluate-->
+      </div><!-- To be continued-->
     </div>
 
     <div id="belowPart" class="row">
@@ -137,7 +139,7 @@
           </div>
         </div><!--Comments area end-->
         <div><!-- New comment -->
-          <textarea id="commentContent" row="3" class="commentArea">
+          <textarea id="commentContent" row="3" class="commentArea" value="">
           </textarea>
           <div  class="btn btn-success" onclick="sendComment(commentContent.value)">评论</div>
         </div><!-- New comment end -->
@@ -158,6 +160,14 @@
         </div>
       </div>
     </div>
+
+
+          <div class="bg-info text-center">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <span>This is a message</span>
+          </div>
 
     <!-- jQuery (necessary for Flat UI's JavaScript plugins) -->
     <script src="js/vendor/jquery.min.js"></script>

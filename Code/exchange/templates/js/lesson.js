@@ -22,7 +22,31 @@ xmlhttp.onreadystatechange=function()
     document.getElementById("txtHint").innerHTML=xmlhttp.responseText;
     }
   }
-xmlhttp.open("GET","/comment/create/"+str, true);
-xmlhttp.send();
+xmlhttp.open("POST", "/comment/create/", true);
+xmlhttp.send(str);
 console.log("str: " + str);
+}
+
+function shareFile(file) {
+  var xmlhttp;
+  if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+    xmlhttp=new XMLHttpRequest();
+  }
+  else {// code for IE6, IE5
+    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+  xmlhttp.open("POST", "/meterial/create/", true);
+  xmlhttp.send(file);
+}
+
+window.onload = function() {
+  // alert("hello");
+  var body = document.body;
+  var msg = document.createElement("div");
+  msg.innerHTML = "This is a message";
+  msg.className += "bg-info text-center ";
+  var remove = document.createElement("span");
+  remove.attributes["data-role"] = "remove";
+  msg.appendChild(remove);
+  body.appendChild(msg);
 }
