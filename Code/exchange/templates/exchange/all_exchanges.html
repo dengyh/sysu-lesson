@@ -7,22 +7,25 @@
 
 {% block main %}
 <div class="container">
-    <h2>浏览换课信息</h2>
+    <h2>浏览换课信息
+        <a id="create" href="form" class="btn btn-success">发布换课信息</a>
+    </h2>
 
     <div><!-- Exchange info list -->
         {% if exchanges %}
         {% for exchange in exchanges %}
             <a href="{% url 'exchange:exchange_detail' exchange.id %}">
-        <div class="panel panel-primary">
-            <div class="panel-heading ">
-                <div class="h6 text-left">换出课程：{{ exchange.lessonOut.title }}</div>
-                <div class="text-right">{{ exchange.time }}</div>
-            </div>
-            <div class="panel-body">
-                <div class="text-left">Phone:{{ exchange.phone }}<br>Email:{{ exchange.email }}</div>
-                <div class="text-right">{{ exchange.description }}</div>
-            </div>
-        </div></a>
+                <div class="panel panel-primary">
+                    <div class="panel-heading ">
+                        <div class="h6 text-left">换出课程：{{ exchange.lessonOut.title }}</div>
+                        <div class="text-right">{{ exchange.time }}</div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="text-left">Phone:{{ exchange.phone }}<br>Email:{{ exchange.email }}</div>
+                        <div class="text-right">{{ exchange.description }}</div>
+                    </div>
+                </div>
+            </a>
         {% endfor %}
         {% else %}
         <p>还没人发布换课信息哦</p>
@@ -39,16 +42,6 @@
                 {% for page in pages %}
                 <li {% if page == exchanges.number %}class="active"{% endif %}><a href="?page={{ page }}">{{ page }}</a></li>
                 {% endfor %}
-                <!--<li class="pagination-dropdown dropdown">
-                <a href="#fakelink" class="dropdown-toggle" data-toggle="dropdown">
-                    <i class="fui-triangle-down"></i>
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a href="#fakelink">10–20</a></li>
-                    <li><a href="#fakelink">20–30</a></li>
-                    <li><a href="#fakelink">40–50</a></li>
-                </ul>
-                </li>-->
                 {% if exchanges.has_next %}
                 <li class="next"><a href="?page={{ exchanges.next_page_number }}" class="fui-arrow-right">后页</a></li>
                 {% endif %}
