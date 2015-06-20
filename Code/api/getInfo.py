@@ -142,4 +142,32 @@ def getSelectResults(user, sysuer):
         select_results.append(my_lesson)
     return select_results
 
+def getGradePoint(sysuer):
+    """ 获取绩点 """
+    gradePointStr = sysuer.getGrade()
+    grade_point = {}
+    pattern = pattern = re.compile(r'\{"[^\}]*"\}')
+    results = pattern.finditer(gradePointStr)
+    for item in results:
+        gradePoint = item.group()
+        colOnePattern = re.compile(r'(?<="oneColumn":")([^"]+?)(?=")')
+        colOne = colOnePattern.search(gradePoint).group()
+        colTwoPattern = re.compile(r'(?<="twoColumn":")([^"]+?)(?=")')
+        colTwo = colTwoPattern.search(gradePoint).group()
+        grade_point[colOne] = colTwo
+    return grade_point
 
+def getCredit(sysuer):
+    """ 获取学分 """
+    creditStr = sysuer.getCredit()
+    credits = {}
+    pattern = pattern = re.compile(r'\{"[^\}]*"\}')
+    results = pattern.finditer(creditStr)
+    for item in results:
+        gradePoint = item.group()
+        colOnePattern = re.compile(r'(?<="oneColumn":")([^"]+?)(?=")')
+        colOne = colOnePattern.search(gradePoint).group()
+        colTwoPattern = re.compile(r'(?<="twoColumn":")([^"]+?)(?=")')
+        colTwo = colTwoPattern.search(gradePoint).group()
+        credits[colOne] = colTwo
+    return credits
