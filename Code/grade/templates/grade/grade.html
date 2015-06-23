@@ -1,0 +1,69 @@
+{% extends 'base/base.html' %}
+
+{% block title %}我的成绩{% endblock %}
+
+{% block import %}
+{% load staticfiles %}
+<link href="{% static 'grade/css/grade.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block main %}
+<div class="panel panel-primary grade-panel">
+    <div class="panel-heading">
+        <span>我的成绩
+            <div class="btn-group">
+                <button class="btn btn-inverse dropdown-toggle" type="button" data-toggle="dropdown">
+                    学年度 <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-inverse" role="menu">
+                    <li><a href="#" class="year-option">Action</a></li>
+                    <li><a href="#" class="year-option">Another action</a></li>
+                    <li><a href="#" class="year-option">Something else here</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#" class="year-option">Separated link</a></li>
+                </ul>
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-inverse dropdown-toggle" type="button" data-toggle="dropdown">
+                    学期 <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-inverse" role="menu">
+                    <li><a href="#" class="term-option">Action</a></li>
+                    <li><a href="#" class="term-option">Another action</a></li>
+                    <li><a href="#" class="term-option">Something else here</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Separated link</a></li>
+                </ul>
+            </div>
+            <form>
+                <input type="hidden">
+                <button class="btn btn-primary">确定</button>
+        </span>
+    </div>
+    <div class="panel-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>科目</th>
+                    <th>分数</th>
+                    <th>排名</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for item in grades %}
+                <tr>
+                    <td>{{ item.kcmc }}</td>
+                    <td>{{ item.zpcj }}</td>
+                    <td>{{ item.jxbpm }}</td>
+                </tr>
+            {% endfor %}
+                <tr>
+                    <td>.adsafa.</td>
+                    <td>..dsafasdfdsaf</td>
+                    <td>.sdfasdfas.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+<div>
+{% endblock %}

@@ -81,14 +81,12 @@ WSGI_APPLICATION = 'SysuLesson.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
-print BASE_DIR
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'sysu_lesson',
         'USER': 'root',
-        'PASSWORD': 'fy940705',
+        'PASSWORD': '3351900',
         'HOST': 'localhost',
         'PORT': 3306,
     }
@@ -118,3 +116,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/').replace('\\', '/')
 MEDIA_URL = '/media/'
 
 LOGIN_URL = '/login/'
+
+# Session time
+SESSION_COOKIE_AGE = 1800
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True

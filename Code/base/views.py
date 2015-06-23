@@ -8,7 +8,9 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 
 from api.sysu import Sysuer
-from api.getInfo import getGrades
+from api.parser import parseResultOfCourseSelection, parseScore
+
+import os
 
 # Create your views here.
 
@@ -16,6 +18,15 @@ from api.getInfo import getGrades
 @require_GET
 def index(request):
     return render(request, 'base/index.html')
+
+@login_required
+def test(request):
+    test = Sysuer(username=request.user.username,
+        cookie=request.session['cookie'])
+    data = parseResultOfCourseSelection(test)
+    return render(request, 'base/test.html', {
+        'data': data,
+        })
 
 @require_http_methods(['GET', 'POST'])
 def login(request):
@@ -26,6 +37,7 @@ def login(request):
         cookie = request.POST.get('cookie', None)
         captcha = request.POST.get('captcha', None)
         rno = request.POST.get('rno', None)
+        image = request.POST.get('image', None)
         if username and password and cookie and captcha and rno:
             sysuer = Sysuer(username=username, password=password, cookie=cookie)
             try:
@@ -34,12 +46,11 @@ def login(request):
             except:
                 success = False
             if success:
+                saveImageAsCorrectName(image, captcha)
                 request.session['cookie'] = cookie
                 user, created = User.objects.get_or_create(username=username)
                 user.set_password(password)
                 user.save()
-                if created:
-                    getGrades(user, sysuer)
                 user = auth.authenticate(username=username, password=password)
                 auth.login(request, user)
                 return redirect(nextPage)
@@ -51,6 +62,10 @@ def login(request):
         'rno': user.rno,
         'test': {'haha': 'haha'}
     })
+
+def saveImageAsCorrectName(path, name):
+    os.rename(os.path.join('media', 'captcha', path.split('/')[1]),
+        os.path.join('media', 'captcha', str(name) + '.jpg'))
 
 @require_GET
 def logout(request):

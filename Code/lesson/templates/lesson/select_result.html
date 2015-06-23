@@ -1,4 +1,11 @@
-{% for lesson in lessons %}
+{% extends 'base/base.html' %}
 
-{{lesson.name}}
-{% endfor %}
+{% block title %}选课结果{% endblock %}
+
+{% block import %}
+<link href="{% static 'lesson/css/result.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block main %}
+
+{% endblock %}

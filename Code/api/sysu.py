@@ -265,11 +265,15 @@ class Sysuer:
         self.postData(self.urls['courses'], postHeader, data, self.passHeader, buffer.write)
         return buffer.getvalue()
 
-    def getResultOfCourseSelection(self):
+    def getResultOfCourseSelection(self, year=None, term=None, yearCondition='=', termCondition='='):
         if self.cookie is None:
             self.login()
         buffer = StringIO()
-        data = '''{header:{"code": -100, "message": {"title": "", "detail": ""}},body:{dataStores:{xsxkjgStore:{rowSet:{"primary":[],"filter":[],"delete":[]},name:"xsxkjgStore",pageNumber:1,pageSize:1000,recordCount:0,rowSetName:"pojo_com.neusoft.education.sysu.xk.xkjg.entity.XkjgxxEntity",order:"xkjg.xnd desc,xkjg.xq desc, xkjg.jxbh"}},parameters:{"xsxkjgStore-params": [], "args": []}}}'''
+        if year is None:
+            yearCondition = '!='
+        if term is None:
+            termCondition = '!='
+        data = '''{header:{"code": -100, "message": {"title": "", "detail": ""}},body:{dataStores:{xsxkjgStore:{rowSet:{"primary":[],"filter":[],"delete":[]},name:"xsxkjgStore",pageNumber:1,pageSize:1000,recordCount:0,rowSetName:"pojo_com.neusoft.education.sysu.xk.xkjg.entity.XkjgxxEntity",order:"xkjg.xnd desc,xkjg.xq desc, xkjg.jxbh"}},parameters:{"xsxkjgStore-params": [{"name": "xnd", "type": "String", "value": "'%s'", "condition": " %s ", "property": "xkjg.xnd"}, {"name": "xq", "type": "String", "value": "'%s'", "condition": " %s ", "property": "xkjg.xq"}], "args": []}}}''' % (year, yearCondition, term, termCondition)
         self.postData(self.urls['selection'], postHeader, data, self.passHeader, buffer.write)
         return buffer.getvalue()
 

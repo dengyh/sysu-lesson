@@ -1,6 +1,7 @@
 .index-image {
     width: 100%;
     border: 20px solid rgb(52,73,94);
+    border-top: none;
 }
 
 .index-image img {
