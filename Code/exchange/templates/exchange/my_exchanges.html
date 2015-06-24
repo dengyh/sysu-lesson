@@ -8,8 +8,11 @@
 {% block main %}
 <div class="totle">
     <div class="name">
-        <h4>我发布的换课信息</h4>
+        <h4>我发布的换课信息
+            <a id="create" href="form" class="btn btn-success">发布换课信息</a>
+        </h4>
     </div>
+
     {% if exchanges %}
     <div class="table">
         <table>
