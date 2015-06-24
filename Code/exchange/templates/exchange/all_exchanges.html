@@ -8,7 +8,7 @@
 {% block main %}
 <div class="container">
     <h2>浏览换课信息
-        <a id="create" href="form" class="btn btn-success">发布换课信息</a>
+        <a id="create" href="{% url 'exchange:new_exchange' %}" class="btn btn-success">发布换课信息</a>
     </h2>
 
     <div><!-- Exchange info list -->
@@ -17,7 +17,8 @@
             <a href="{% url 'exchange:exchange_detail' exchange.id %}">
                 <div class="panel panel-primary">
                     <div class="panel-heading ">
-                        <div class="h6 text-left">换出课程：{{ exchange.lessonOut.title }}</div>
+                        <div class="h6 text-left">计划换出课程：{{ exchange.lessonOut }}
+                            {% if exchange.lessonIn %}<br>希望得到的课程：{{ exchange.lessonIn }}{%endif%}</div>
                         <div class="text-right">{{ exchange.time|date:'Y-m-d' }} {{ exchange.time|date:'H:i' }}</div>
                     </div>
                     <div class="panel-body">

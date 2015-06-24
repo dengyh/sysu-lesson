@@ -5,6 +5,8 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.decorators.http import require_http_methods, require_GET, require_POST
 from django.contrib.auth.decorators import login_required
 
+from django.db.models import Q
+
 from .models import Lesson
 from comment.models import Comment
 from meterial.models import Meterial
@@ -16,7 +18,11 @@ from api.parser import parseResultOfCourseSelection, parseScore
 @require_GET
 @login_required
 def lessons_list(request):
-    all_lessons = Lesson.objects.all()
+    search = request.GET.get('p', None)
+    if search is not None:
+        all_lessons = Lesson.objects.filter(Q(title__contains=search) | Q(teacher__contains=search))
+    else:
+        all_lessons = Lesson.objects.all()
     paginator = Paginator(all_lessons, 25)
 
     page = request.GET.get('page')
@@ -27,7 +33,10 @@ def lessons_list(request):
     except EmptyPage:
         lessons = paginator.page(paginator.num_pages)
 
-    return render(request, 'lesson/lessons_list.html', {'lessons': lessons})
+    return render(request, 'lesson/lessons_list.html', {
+        'lessons': lessons,
+        'search': search,
+        })
 
 
 @login_required
@@ -51,7 +60,13 @@ def lesson_detail(request, lesson_id):
 def select_result(request):
     user = Sysuer(username=request.user.username,
         cookie=request.session['cookie'])
-    data = parseResultOfCourseSelection(user)
+    lessons = parseResultOfCourseSelection(user)
+    for x in lessons:
+        try:
+            lesson = Lesson.objects.get(lessonId=x['kch'], teacher=x['xm'])
+            x.set('id', lesson.id)
+        except:
+            pass
     return render(request, 'lesson/select_result.html', {
-        'lessons': data,
+        'lessons': lessons,
     })

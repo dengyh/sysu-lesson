@@ -125,7 +125,7 @@ CREATE TABLE `auth_user` (
 
 LOCK TABLES `auth_user` WRITE;
 /*!40000 ALTER TABLE `auth_user` DISABLE KEYS */;
-INSERT INTO `auth_user` VALUES (2,'pbkdf2_sha256$20000$CJiIJEc5AHP9$+2TcXgDhVhBMCqOTrLaiFVzq6BobS7imYcTBx5yrqSE=','2015-06-18 18:58:52',1,'admin','','','111@qq.com',1,1,'2015-06-18 18:15:34'),(12,'pbkdf2_sha256$20000$ygcwIN5d8OAh$Ul79ZYJeV5+NFE5PNZC5I6/IlzagMcHSZd0ocHitj+g=','2015-06-18 19:25:09',0,'12330085','','','',0,1,'2015-06-18 18:58:21');
+INSERT INTO `auth_user` VALUES (2,'pbkdf2_sha256$20000$CJiIJEc5AHP9$+2TcXgDhVhBMCqOTrLaiFVzq6BobS7imYcTBx5yrqSE=','2015-06-18 18:58:52',1,'admin','','','111@qq.com',1,1,'2015-06-18 18:15:34'),(12,'pbkdf2_sha256$20000$NCAnQUYirACC$LpNKsvQSoEzjtvRBnJjbVrwXpVa0GPHOgWyXWRtrcLE=','2015-06-24 05:36:40',0,'12330085','','','',0,1,'2015-06-18 18:58:21');
 /*!40000 ALTER TABLE `auth_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -292,7 +292,7 @@ CREATE TABLE `django_migrations` (
   `name` varchar(255) COLLATE utf8_bin NOT NULL,
   `applied` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -301,7 +301,7 @@ CREATE TABLE `django_migrations` (
 
 LOCK TABLES `django_migrations` WRITE;
 /*!40000 ALTER TABLE `django_migrations` DISABLE KEYS */;
-INSERT INTO `django_migrations` VALUES (1,'contenttypes','0001_initial','2015-06-18 13:43:43'),(2,'auth','0001_initial','2015-06-18 13:43:45'),(3,'admin','0001_initial','2015-06-18 13:43:46'),(4,'contenttypes','0002_remove_content_type_name','2015-06-18 13:43:46'),(5,'auth','0002_alter_permission_name_max_length','2015-06-18 13:43:46'),(6,'auth','0003_alter_user_email_max_length','2015-06-18 13:43:47'),(7,'auth','0004_alter_user_username_opts','2015-06-18 13:43:47'),(8,'auth','0005_alter_user_last_login_null','2015-06-18 13:43:47'),(9,'auth','0006_require_contenttypes_0002','2015-06-18 13:43:47'),(10,'school','0001_initial','2015-06-18 13:43:49'),(11,'lesson','0001_initial','2015-06-18 13:43:49'),(12,'comment','0001_initial','2015-06-18 13:43:50'),(13,'exchange','0001_initial','2015-06-18 13:43:50'),(14,'grade','0001_initial','2015-06-18 13:43:51'),(15,'meterial','0001_initial','2015-06-18 13:43:52'),(16,'sessions','0001_initial','2015-06-18 13:43:52'),(17,'grade','0002_auto_20150618_1841','2015-06-18 18:41:38'),(18,'lesson','0002_auto_20150618_1856','2015-06-18 18:57:06');
+INSERT INTO `django_migrations` VALUES (1,'contenttypes','0001_initial','2015-06-18 13:43:43'),(2,'auth','0001_initial','2015-06-18 13:43:45'),(3,'admin','0001_initial','2015-06-18 13:43:46'),(4,'contenttypes','0002_remove_content_type_name','2015-06-18 13:43:46'),(5,'auth','0002_alter_permission_name_max_length','2015-06-18 13:43:46'),(6,'auth','0003_alter_user_email_max_length','2015-06-18 13:43:47'),(7,'auth','0004_alter_user_username_opts','2015-06-18 13:43:47'),(8,'auth','0005_alter_user_last_login_null','2015-06-18 13:43:47'),(9,'auth','0006_require_contenttypes_0002','2015-06-18 13:43:47'),(10,'school','0001_initial','2015-06-18 13:43:49'),(11,'lesson','0001_initial','2015-06-18 13:43:49'),(12,'comment','0001_initial','2015-06-18 13:43:50'),(13,'exchange','0001_initial','2015-06-18 13:43:50'),(14,'grade','0001_initial','2015-06-18 13:43:51'),(15,'meterial','0001_initial','2015-06-18 13:43:52'),(16,'sessions','0001_initial','2015-06-18 13:43:52'),(17,'grade','0002_auto_20150618_1841','2015-06-18 18:41:38'),(18,'lesson','0002_auto_20150618_1856','2015-06-18 18:57:06'),(19,'exchange','0002_auto_20150624_1631','2015-06-24 08:32:07');
 /*!40000 ALTER TABLE `django_migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -327,7 +327,7 @@ CREATE TABLE `django_session` (
 
 LOCK TABLES `django_session` WRITE;
 /*!40000 ALTER TABLE `django_session` DISABLE KEYS */;
-INSERT INTO `django_session` VALUES ('ztak5l6kayt3i593a848fkxdxb4ti7z7','YTQ3NzZlYzAwN2FhYjAyM2Y3Y2EyYzI5YWJlMGUyMDAxZDI1ODUxMzp7Il9hdXRoX3VzZXJfaGFzaCI6IjBkMmUwZTNmYjcxMDE4Mjc3MmM2ODQ3YmQxOTZiZTg3YjE3NmM1MTAiLCJjb29raWUiOiJKU0VTU0lPTklEPUYzNzQzMEIxMjUxQ0JDQkIyREQ0MTJDM0VDNjE2MzQ4IiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2lkIjoiMTIifQ==','2015-07-02 19:25:09');
+INSERT INTO `django_session` VALUES ('oa0017rcqo7c83wp3saezbu7c1tb002k','YjRlNmU2MzRiYzFjODMzNzgxMTFhMjI1MmM3NzI0OTQ4ZWUyZGQwODp7Il9hdXRoX3VzZXJfaGFzaCI6ImY5NWQ3OTdiMDZjZDJjOTZkNzhhZGE0NGQxOGM1M2ZlNDBiMjZiYmMiLCJjb29raWUiOiJKU0VTU0lPTklEPTdEOUNBMzNCM0REMUExOEY2MEYyMDgyREJDQTM0NzhDIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2lkIjoiMTIifQ==','2015-07-08 05:36:40');
 /*!40000 ALTER TABLE `django_session` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -347,12 +347,12 @@ CREATE TABLE `exchange_exchange` (
   `description` longtext COLLATE utf8_bin,
   `deadline` datetime DEFAULT NULL,
   `time` datetime NOT NULL,
-  `state` varchar(4) COLLATE utf8_bin NOT NULL,
   `user_id` int(11) NOT NULL,
+  `finished` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `exchange_exchange_user_id_2db67b27b00c724d_fk_auth_user_id` (`user_id`),
   CONSTRAINT `exchange_exchange_user_id_2db67b27b00c724d_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -361,7 +361,7 @@ CREATE TABLE `exchange_exchange` (
 
 LOCK TABLES `exchange_exchange` WRITE;
 /*!40000 ALTER TABLE `exchange_exchange` DISABLE KEYS */;
-INSERT INTO `exchange_exchange` VALUES (1,'','系统分析与设计','123213123','2333213213@qq.com','',NULL,'2015-06-18 19:42:35','i',12);
+INSERT INTO `exchange_exchange` VALUES (4,'','工作流技术','1233333','10902202@qq.com','','2015-06-29 16:00:00','2015-06-24 08:37:29',12,1);
 /*!40000 ALTER TABLE `exchange_exchange` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -578,4 +578,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-06-19 16:54:05
+-- Dump completed on 2015-06-24 16:55:25
