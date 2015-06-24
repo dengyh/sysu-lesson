@@ -8,7 +8,7 @@
 {% block main %}
 <div class="container">
     <h2>换课信息详情
-        <a id="create" href="form" class="btn btn-success">发布换课信息</a>
+        <a id="create" href="{% url 'exchange:new_exchange' %}" class="btn btn-success">发布换课信息</a>
     </h2>
 </div>
 <!-- /.container -->
@@ -39,7 +39,7 @@
             <dt>发布日期</dt>
             <dd>{{ exchange.time }}</dd>
         </dl>
-        {% if not_finished %}
+        {% if display %}
         <form action="{% url 'exchange:finish_exchange' exchange.id %}" method="post">
         {% csrf_token %}
         <div class="col-xs-6">
@@ -49,7 +49,7 @@
         <form action="{% url 'exchange:cancel_exchange' exchange.id %}" method="post">
         {% csrf_token %}
         <div clss="col-xs-6">
-            <button type="submit" class="btn btn-danger center-block">撤消</button>
+            <button type="submit" class="btn btn-danger center-block">删除</button>
         </div>
         </form>
         {% endif %}
