@@ -9,7 +9,7 @@
 <div class="totle">
     <div class="name">
         <h4>我发布的换课信息
-            <a id="create" href="form" class="btn btn-success">发布换课信息</a>
+            <a id="create" href="{% url 'exchange:new_exchange' %}" class="btn btn-success">发布换课信息</a>
         </h4>
     </div>
 
@@ -26,7 +26,7 @@
             <tr>
                 <td><a href="{% url 'exchange:exchange_detail' exchange.id %}">{{ exchange.lessonOut.title }}</a></td>
                 <td>{{ exchange.lessonIn.title|default:'我只是想送一门课' }}</td>
-                <td>{{ exchange.get_state_display }}</td>
+                <td>{{ exchange.get_state }}</td>
                 <td>{{ exchange.time }}</td>
 
             </tr>

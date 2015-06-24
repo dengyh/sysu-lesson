@@ -17,7 +17,7 @@ from api.parser import parseResultOfCourseSelection, parseScore
 def all_exchanges(request):
     """ interface URL: /exchange/ """
     exchanges = Exchange.objects.all()
-    paginator = Paginator(exchanges, 1)
+    paginator = Paginator(exchanges, 5)
     page = request.GET.get('page')
     try:
         exchanges_per_page = paginator.page(page)
@@ -36,7 +36,8 @@ def all_exchanges(request):
 @require_GET
 def my_exchanges(request):
     """ interface URL: /exchange/home/ """
-    exchanges = Exchange.objects.all()
+    user = request.user
+    exchanges = user.exchange_set.all()
     return render(request, 'exchange/my_exchanges.html',{
         'exchanges':exchanges})
 
@@ -47,7 +48,7 @@ def new_exchange(request):
     user = Sysuer(username=request.user.username,
         cookie=request.session['cookie'])
     data = parseResultOfCourseSelection(user)
-    lessons = [lesson for lesson in data if lesson.xnd == '2014-2015' and lesson.xq == '3']
+    lessons = [lesson for lesson in data if lesson['xnd'] == '2014-2015' and lesson['xq'] == '3' and int(lesson['kclbm'])>20]
     return render(request, 'exchange/new_exchange.html', {
         'lessons': lessons,
         })
@@ -91,19 +92,18 @@ def finish_exchange(request, exchange_id):
 @require_POST
 def cancel_exchange(request, exchange_id):
     exchange = get_object_or_404(Exchange, pk=exchange_id)
-    exchange.cancel()
-    exchange.save()
-    return HttpResponseRedirect(reverse('exchange:exchange_detail', args=(exchange_id, )))
+    exchange.delete()
+    return HttpResponseRedirect(reverse('exchange:my_exchanges'))
 
 @login_required
 @require_GET
 def exchange_detail(request, exchange_id):
     exchange = get_object_or_404(Exchange, pk=exchange_id)
-    if exchange.get_state() == 'i':
-        not_finished = True
-    else:
-        not_finished = False
+    not_finished = not exchange.finished
+    current_user = request.user == exchange.user
+    display = not_finished and current_user
+    print not_finished, current_user
     return render(request, 'exchange/exchange_detail.html',{
         'exchange': exchange,
-        'not_finished': not_finished})
+        'display': display})
 # Create your views here.

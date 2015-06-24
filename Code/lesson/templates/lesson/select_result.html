@@ -1,10 +1,7 @@
 {% extends "base/base.html" %}
 
-<<<<<<< HEAD
 {% block title %}选课结果{% endblock %}
 
-=======
->>>>>>> 341d6f2a4ed2c493bb4dae1f8412e3e9c9a019c1
 {% block import %}
 {% load staticfiles %}
 <link href="{% static 'lesson/css/select_result.css' %}" rel="stylesheet" type="text/css">
@@ -28,7 +25,11 @@
 
       {% for lesson in lessons %}
         <tr>
-          <td><a href="/lesson/{{lesson.kch}}/">{{lesson.kcmc}}</a></td>
+          {% if lesson.id %}
+          <td><a href="{% url 'lesson:lesson_detail' lesson.id %}">{{lesson.kcmc}}</a></td>
+          {% else %}
+          <td>{{lesson.kcmc}}</td>
+          {% endif %}
           <td>{{lesson.xm}}</td>
           <td>{{lesson.xf}}</td>
           <td>{{lesson.sksjdd}}</td>
