@@ -2,6 +2,10 @@
 
 {% block import %}
 {% load staticfiles %}
+
+
+<script src="{% static 'lesson/js/Chart.js' %}" type="text/javascript"></script>
+
 <link href="{% static 'lesson/css/lesson.css' %}" rel="stylesheet">
 <script src="{% static 'lesson/js/lesson.js' %}" type="text/javascript"></script>
 <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
@@ -45,6 +49,9 @@
         <dt>课程类型</dt>
         <dd>{{ lesson.get_type_display }}</dd>
     </dl>
+    <div><!-- Evaluate-->
+      <canvas id="chart-area"></canvas>
+    </div><!-- To be continued-->
 </div>
 
 <div id="belowPart" class="row container">
@@ -114,4 +121,25 @@
 <script type="text/javascript">
     lessonId = {{ lesson.lessonId }};
 </script> <!-- Use an ugly way to restore leesonId to be use in js. -->
+
+<script>
+    var randomScalingFactor = function(){ return Math.round(Math.random()*100)}; // Generate random data here, for debug only.
+    lineChartData = {
+      labels : ["January","February","March","April","May","June","July"],
+      datasets : [
+        {
+          label: "My First dataset",
+          fillColor : "rgba(220,220,220,0.2)",
+          strokeColor : "rgba(220,220,220,1)",
+          pointColor : "rgba(220,220,220,1)",
+          pointStrokeColor : "#fff",
+          pointHighlightFill : "#fff",
+          pointHighlightStroke : "rgba(220,220,220,1)",
+          data : [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]  // History data here.
+        },
+      ]
+
+    };
+  </script>
+
 {% endblock main %}

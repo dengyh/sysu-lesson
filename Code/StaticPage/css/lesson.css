@@ -12,3 +12,8 @@
 .commentArea {
 	width:100%;
 }
+
+#chart-area {
+	width: 80%;
+	margin: auto;
+}

@@ -47,7 +47,16 @@ var uploadFile = function() {
 }
 
 window.onload = function() {
+  initChart();
   initForm();
+}
+
+
+var initChart = function() {
+  var ctx = document.getElementById("chart-area").getContext("2d");
+  window.myLine = new Chart(ctx).Line(lineChartData, {
+    responsive: true
+  });
 }
 
 var initForm = function() {
