@@ -51,7 +51,13 @@ def lesson_detail(request, lesson_id):
 def select_result(request):
     user = Sysuer(username=request.user.username,
         cookie=request.session['cookie'])
-    data = parseResultOfCourseSelection(user)
+    lessons = parseResultOfCourseSelection(user)
+    for x in lessons:
+        try:
+            lesson = Lesson.objects.get(lessonId=x['kch'], teacher=x['xm'])
+            x['id'] = lesson.id
+        except:
+            pass
     return render(request, 'lesson/select_result.html', {
-        'lessons': data,
+        'lessons': lessons,
     })

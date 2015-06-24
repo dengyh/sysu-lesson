@@ -13,7 +13,7 @@
         <span><span class="fui-user"></span> 我的成绩
             <div class="btn-group">
                 <button class="btn btn-inverse dropdown-toggle" type="button" data-toggle="dropdown">
-                    <span id="year-span">学年度</span> <span class="caret"></span>
+                    <span id="year-span">{{ current.year|default:'学年度' }}</span> <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-inverse" role="menu">
                     <li><a href="#" class="year-option" data-value="2007-2008">2007-2008</a></li>
@@ -31,7 +31,7 @@
             </div>
             <div class="btn-group">
                 <button class="btn btn-inverse dropdown-toggle" type="button" data-toggle="dropdown">
-                    <span id="term-span">学期</span> <span class="caret"></span>
+                    <span id="term-span">{{ current.term|default:'学期' }}</span> <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-inverse" role="menu">
                     <li><a href="#" class="term-option" data-value="1">小学期</a></li>
@@ -55,8 +55,8 @@
                 </ul>
             </div>
             <form method="get" action="">
-                <input type="hidden" name="year" value="" id="year-input">
-                <input type="hidden" name="term" value="" id="term-input">
+                <input type="hidden" name="year" value="{{current.year}}" id="year-input">
+                <input type="hidden" name="term" value="{{ current.term }}" id="term-input">
                 <input type="hidden" name="type" value="" id="type-input">
                 <button class="btn btn-primary">确定</button>
             </form>

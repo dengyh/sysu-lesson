@@ -15,26 +15,20 @@ class Exchange(models.Model):
     description = models.TextField(null = True, blank = True)
     deadline = models.DateTimeField(null = True, blank = True)
     time = models.DateTimeField('published time')
-    state = models.CharField(max_length=4, choices = (
-        ('i', '进行中'),
-        ('c', '已撤销'),
-        ('f', '已结束'),
-    ), default = 'i')
-
-    def get_state(self):
-        return self.state
+    finished = models.BooleanField(default=False)
 
     def finish(self):
-        if self.state == 'i':
-            self.state = 'f'
+        self.finished = True
 
-    def cancel(self):
-        if self.state == 'i':
-            self.state = 'c'
+    def get_state(self):
+        if self.finished:
+            return '已完成'
+        else:
+            return '进行中'
 
     def __unicode__(self):
         try:
-            return 'Exchange hold by ' + self.first_name + \
+            return 'Exchange hold by ' + self.user + \
                 ' for lesson ' + str(self.lesson.id)
         except:
             return 'An Exchange'
