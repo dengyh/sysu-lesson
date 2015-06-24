@@ -14,9 +14,8 @@ def parseResultOfCourseSelection(sysuer):
     source = sysuer.getResultOfCourseSelection()
     result = listPattern.search(source)
     data = json.loads(result.group())
-    print data
     fields = ['kcmc', 'xf', 'kch', 'pylbm', 'kclbm', 'xnd', 'xq', 'jxbh', 'pkdw', 'kkdw', 'xm', 'sksjdd']
-    return data
+    return list(parseFromFields(data ,fields))
 
 def parseScore(sysuer, year, term, type):
     source = sysuer.getScore(year, term, type)
