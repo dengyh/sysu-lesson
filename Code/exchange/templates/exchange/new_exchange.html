@@ -17,36 +17,30 @@
         <div class="input-group">
             <label class="control-label input-group-addon" for="lessonIn">计划换出的课程</label>
             <select data-toggle="select" name="lessonOut" class="select select-primary select-block mbl form-control">
-                {% if lessons %}
                 {% for lesson in lessons %}
-                <option value="{{ lesson.name }}">{{ lesson.name }}</option>
-                {% endfor %}
-                {% else %}
+                <option value="{{ lesson.kcmc }}">{{ lesson.kcmc }}</option>
+                {% empty %}
                 <option value="">你没有可换出的课程=。=</option>
-                {% endif %}
+                {% endfor %}
             </select>
         </div>
     </div>
     <div class="form-group">
         <div class="input-group">
             <label class="control-label input-group-addon" for="lessonOut">计划得到的课程</label>
-            <select data-toggle="select" name="lessonIn" class="select select-primary select-block mbl form-control">
-                <option value="">空（我只是想送出一门课而已）</option>
-                <option value="SoftwareTesting">SoftwareTesting</option>
-                <option value="DataMining">DataMinging</option>
-            </select>
+            <input type="text" class="form-control" name="lessonIn" placeholder="请输入你希望得到的课程名称">
         </div>
     </div>
     <div class="form-group">
         <div class="input-group">
             <label class="input-group-addon">电话</label>
-            <input type="number" class="form-control" name="phone" placeholder="请输入您的电话号码。"></input>
+            <input type="number" class="form-control" name="phone" placeholder="请输入您的电话号码。">
         </div>
     </div>
     <div class="form-group">
         <div class="input-group">
             <label class="input-group-addon">Email</label>
-            <input type="email" class="form-control" name="email" placeholder="请输入您的邮箱地址。"></input>
+            <input type="email" class="form-control" name="email" placeholder="请输入您的邮箱地址。">
         </div>
     </div>
     <div class="form-group">

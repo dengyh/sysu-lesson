@@ -46,6 +46,7 @@ def login(request):
             except:
                 success = False
             if success:
+                nextPage = request.POST.get('next', '/')
                 saveImageAsCorrectName(image, captcha)
                 request.session['cookie'] = cookie
                 user, created = User.objects.get_or_create(username=username)
@@ -60,7 +61,7 @@ def login(request):
         'cookie': user.cookie,
         'image': user.image,
         'rno': user.rno,
-        'test': {'haha': 'haha'}
+        'next': nextPage,
     })
 
 def saveImageAsCorrectName(path, name):

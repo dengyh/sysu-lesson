@@ -14,3 +14,7 @@ div.grade-panel {
     margin: 0;
     font-weight: bolder;
 }
+
+.grade-panel form {
+    display: inline-block;
+}

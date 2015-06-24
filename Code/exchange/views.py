@@ -11,8 +11,8 @@ from datetime import datetime
 
 from .models import Exchange
 from lesson.models import Lesson
-from api.getInfo import getSelectResults
 from api.sysu import Sysuer
+from api.parser import parseResultOfCourseSelection, parseScore
 
 @login_required
 @require_GET
@@ -46,11 +46,10 @@ def my_exchanges(request):
 @require_GET
 def new_exchange(request):
     """ interface URL: /exchange/form/ """
-    user = request.user
-    sysuer = Sysuer(username=user.username)
-    sysuer.cookie = request.session['cookie']
-    all_lessons = getSelectResults(user, sysuer)
-    lessons = [lesson for lesson in all_lessons if lesson.year=='2014-2015']
+    user = Sysuer(username=request.user.username,
+        cookie=request.session['cookie'])
+    data = parseResultOfCourseSelection(user)
+    lessons = [lesson for lesson in data if lesson.xnd == '2014-2015' and lesson.xq == '3']
     return render(request, 'exchange/new_exchange.html', {
         'lessons': lessons,
         })

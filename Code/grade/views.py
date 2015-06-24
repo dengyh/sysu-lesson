@@ -12,11 +12,12 @@ from api.parser import parseResultOfCourseSelection, parseScore
 @require_GET
 @login_required
 def get_personal_grade(request):
-    year = request.GET.get('year', None)
-    term = request.GET.get('term', None)
+    year = request.GET.get('year', '2014-2015')
+    term = request.GET.get('term', '3')
+    type = request.GET.get('type', '01')
     user = Sysuer(username=request.user.username,
         cookie=request.session['cookie'])
-    data = parseScore(user, year, term)
+    data = parseScore(user, year, term, type)
     return render(request, 'grade/grade.html', {
         'grades': data,
         })
