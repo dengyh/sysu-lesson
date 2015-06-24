@@ -5,9 +5,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_GET, require_POST
 from django.utils import timezone
-import time
-from time import mktime
-from datetime import datetime
+import datetime
 
 from .models import Exchange
 from lesson.models import Lesson
@@ -66,7 +64,8 @@ def create_exchange(request):
     email = request.POST['email']
     time = timezone.now()
     deadlineList = request.POST['deadline'].split('-')
-
+    deadline = datetime.datetime(int(deadlineList[0]),
+            int(deadlineList[1]), int(deadlineList[2]))
     exchange = Exchange(
             user = user,
             lessonOut = lessonOut,
@@ -75,7 +74,7 @@ def create_exchange(request):
             email = email,
             description = '',
             time = time,
-            #deadline = deadline,
+            deadline = deadline,
     )
     exchange.save()
     return HttpResponseRedirect(reverse('exchange:all_exchanges'))

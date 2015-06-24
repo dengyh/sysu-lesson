@@ -88,7 +88,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'sysu_lesson',
         'USER': 'root',
-        'PASSWORD': '19940412',
+        'PASSWORD': 'fy940705',
         'HOST': 'localhost',
         'PORT': 3306,
     }
@@ -100,7 +100,7 @@ DATABASES = {
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
 
