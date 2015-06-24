@@ -53,12 +53,14 @@ window.onload = function() {
 
 
 var initChart = function() {
-  var ctx_average = $("#chart-average")[0].getContext("2d");
+  var ctx_average = $("#chart-average").get(0).getContext("2d");
   window.myLine = new Chart(ctx_average).Line(lineChartData, {
     responsive: false
   });
-  var ctx_distribution = $("#chart-distribution")[0].getContext("2d");
-  window.myPie = new Chart(ctx_distribution).Pie(pieData);
+  var ctx_distribution = $("#chart-distribution").get(0).getContext("2d");
+  window.myPie = new Chart(ctx_distribution).Pie(pieData, {
+    responsive: false
+  });
 }
 
 var initForm = function() {
