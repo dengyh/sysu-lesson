@@ -19,6 +19,9 @@ def index(request):
 
 @require_http_methods(['GET', 'POST'])
 def login(request):
+    if request.user.is_authenticated():
+        return redirect('/')
+
     nextPage = request.GET.get('next', '/')
     if request.method == 'POST':
         username = request.POST.get('username', None)

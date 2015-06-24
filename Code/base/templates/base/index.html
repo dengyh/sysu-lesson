@@ -13,13 +13,13 @@
 </div>
 <div class="index-icon row">
     <div class="function-icon col-md-4">
-        <a href="#">
+        <a href="{% url 'lesson:lessons_list' %}">
             <img src="{% static 'base/images/icon-lesson.png' %}">
             <p>课程统计</p>
         </a>
     </div>
     <div class="function-icon col-md-4">
-        <a href="#">
+        <a href="{% url 'exchange:all_exchanges' %}">
             <img src="{% static 'base/images/icon-exchange.png' %}">
             <p>交换课程</p>
         </a>
