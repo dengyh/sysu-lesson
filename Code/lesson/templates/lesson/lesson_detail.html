@@ -62,10 +62,7 @@
                 <div class="panel-footer text-left">
                     <span>{{ comment.name }}</span>
                     <span>{{ comment.time }}</span>
-                    <div class="reply-btn btn btn-primary">回复</div>
-                    <div>
-                        <textarea row="1" class="commentArea"></textarea>
-                    </div>
+                    <button type="button" class="reply-btn btn btn-primary" data-toggle="modal" data-target="#inputModal">回复</button>
                 </div>
             </div>
             {% endfor %}
@@ -74,9 +71,7 @@
             {% endif %}
         </div><!--Comments area end-->
         <div><!-- New comment -->
-            <textarea id="commentContent" row="3" class="commentArea">
-            </textarea>
-            <div  class="btn btn-success" onclick="sendComment(commentContent.value)">评论</div>
+            <button type="button" class="reply-btn btn btn-primary" data-toggle="modal" data-target="#inputModal">回复</button>
         </div><!-- New comment end -->
     </div>
     <div class="col-md-4 container well">
@@ -96,5 +91,25 @@
             </input>
         </div>
     </div>
+</div>
+
+<div><!-- Modal-->
+  <div class="modal fade" id="inputModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">发布评论</h4>
+        </div>
+        <div class="modal-body">
+          <textarea id="commentContent" row="5" class="commentArea" value=""></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-success">发布</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 {% endblock main %}

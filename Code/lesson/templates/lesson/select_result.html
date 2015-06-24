@@ -1,4 +1,37 @@
-{% for lesson in lessons %}
+{% extends "base/base.html" %}
 
-{{lesson.name}}
-{% endfor %}
+{% block import %}
+{% load staticfiles %}
+<link href="{% static 'lesson/css/select_result.css' %}" rel="stylesheet" type="text/css">
+{% endblock import %}
+
+{% block main %}
+
+    <div class="container">
+        <h2>课程列表</h2>
+    </div>
+    <!-- /.container -->
+
+    <div class="container center-block">
+    <table class="well table">
+      <tr>
+        <th>名称</th><!-- Course name-->
+        <th>教师</th><!-- Teacher name-->
+        <th>学分</th><!-- Credit -->
+        <th>时间地点</th><!-- Location and time-->
+      </tr>
+
+      {% for lesson in lessons %}
+        <tr>
+          <td><a href="/lesson/{{lesson.lessonId}}">{{lesson.name}}</a></td>
+          <td>{{lesson.teacher}}</td>
+          <td>{{lesson.credit}}</td>
+          <td>{{lesson.time}}</td>
+        </tr>
+      {% endfor %}
+
+    </table>
+    </div>
+{% endblock main %}
+
+

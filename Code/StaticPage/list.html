@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>View exchanges</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Loading Bootstrap -->
+    <link href="css/vendor/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Loading Flat UI -->
+    <link href="css/flat-ui.min.css" rel="stylesheet">
+
+    <link rel="shortcut icon" href="img/favicon.ico">
+
+    <link href="css/list.css" rel="stylesheet">
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+    <!--[if lt IE 9]>
+      <script src="js/vendor/html5shiv.js"></script>
+      <script src="js/vendor/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+
+    <nav class="navbar navbar-inverse navbar-static-top" role="navigation" id="base-nav">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-5">
+              <span class="sr-only">Toggle navigation</span>
+          </button>
+          <a class="navbar-brand" href="{% url 'base:index' %}">课霸</a>
+      </div>
+  
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="navbar-collapse-5">
+          <ul class="nav navbar-nav">
+              <li><a href="{% url 'lesson:lessons_list' %}">所有课程</a></li>
+              <li><a href="{% url 'exchange:all_exchanges' %}">换课信息</a></li>
+              <li><a href="#">About Us</a></li>
+          </ul>
+          <form class="navbar-form navbar-left" action="#" role="search">
+              <div class="form-group">
+                  <div class="input-group">
+                      <input class="form-control" id="navbarInput-01" type="search" placeholder="Search">
+                      <span class="input-group-btn">
+                          <button type="submit" class="btn"><span class="fui-search"></span></button>
+                      </span>
+                  </div>
+              </div>
+          </form>
+          <ul class="nav navbar-nav navbar-right">
+              <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ user.username }}<b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                      <li><a href="#">我的成绩</a></li>
+                      <li><a href="#">换课记录</a></li>
+                      <li><a href="#">选课结果</a></li>
+                      <li class="divider"></li>
+                      <li><a href="{% url 'base:logout' %}">注销</a></li>
+                  </ul>
+              </li>
+          </ul>
+      </div><!-- /.navbar-collapse -->
+    </nav>
+
+     <div class="container">
+
+        <h2>浏览换课信息
+          <a id="create" href="form" class="btn btn-success">发布换课信息</a>
+        </h2>
+       
+       <div class="row"><!-- Exchange info list -->
+         <div class="col-md-4">
+           <div class="panel panel-primary exchangeItem">
+             <div class="panel-heading ">
+               <div class="h6 text-left">System Analysis and Design</div> <!-- Course to be exchanged-->
+               <div class="text-right">2015-06-01</div><!-- Publish date-->
+             </div>
+             <div class="panel-body">
+               <div class="h6 text-left">Software Testing</div><!-- Course wated-->
+               <div class="text-right">PML</div><!-- Author-->
+             </div>
+           </div>
+         </div>
+         <div class="col-md-4">
+           <div class="panel panel-primary exchangeItem">
+             <div class="panel-heading ">
+               <div class="h6 text-left">Software Testing</div> <!-- Course to be exchanged-->
+               <div class="text-right">2015-06-01</div><!-- Publish date-->
+             </div>
+             <div class="panel-body">
+               <div class="h6 text-left">Data Mining</div><!-- Course wated-->
+               <div class="text-right">SXD</div><!-- Author-->
+             </div>
+           </div>
+         </div>
+         <div class="col-md-4">
+           <div class="panel panel-primary exchangeItem">
+             <div class="panel-heading ">
+               <div class="h6 text-left">Data Mining</div> <!-- Course to be exchanged-->
+               <div class="text-right">2015-06-01</div><!-- Publish date-->
+             </div>
+             <div class="panel-body">
+               <div class="h6 text-left">System Analysis and Design</div><!-- Course wated-->
+               <div class="text-right">PY</div><!-- Author-->
+             </div>
+           </div>
+         </div>
+       </div>
+   </div>
+   <!-- /.container -->
+
+  <div class="container">
+    <div class="pagination pagination-success">
+      <ul>
+        <li class="previous">
+          <a href="#fakelink">
+            <i class="fui-arrow-left"></i>
+            前页
+          </a>
+        </li>
+        <li class="active"><a href="#fakelink">1</a></li>
+        <li><a href="#fakelink">2</a></li>
+        <li><a href="#fakelink">3</a></li>
+        <li><a href="#fakelink">4</a></li>
+        <li><a href="#fakelink">5</a></li>
+        <li><a href="#fakelink">6</a></li>
+        <li><a href="#fakelink">7</a></li>
+        <li><a href="#fakelink">8</a></li>
+        <li><a href="#fakelink">9</a></li>
+        <li><a href="#fakelink">10</a></li>
+        <li class="pagination-dropdown dropdown">
+          <a href="#fakelink" class="dropdown-toggle" data-toggle="dropdown">
+            <i class="fui-triangle-down"></i>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="#fakelink">10–20</a></li>
+            <li><a href="#fakelink">20–30</a></li>
+            <li><a href="#fakelink">40–50</a></li>
+          </ul>
+        </li>
+        <li class="next">
+          <a href="#fakelink">
+            后页
+            <i class="fui-arrow-right"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+    <!-- jQuery (necessary for Flat UI's JavaScript plugins) -->
+    <script src="js/vendor/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/vendor/video.js"></script>
+    <script src="js/flat-ui.min.js"></script>
+    <script src="js/application.js"></script>
+
+    <script>
+      $(document).ready(function(){
+        $('select[name="inverse-dropdown"], select[name="inverse-dropdown-optgroup"], select[name="inverse-dropdown-disabled"]').select2({dropdownCssClass: 'select-inverse-dropdown'});
+
+        $('select[name="searchfield"]').select2({dropdownCssClass: 'show-select-search'});
+        $('select[name="inverse-dropdown-searchfield"]').select2({dropdownCssClass: 'select-inverse-dropdown show-select-search'});
+        $('select[name="course"]').select2({dropdownCssClass: 'select-inverse-dropdown show-select-search'});
+      });
+    </script>
+  </body>
+</html>
