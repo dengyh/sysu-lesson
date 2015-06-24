@@ -18,7 +18,7 @@
                 <div class="panel panel-primary">
                     <div class="panel-heading ">
                         <div class="h6 text-left">换出课程：{{ exchange.lessonOut.title }}</div>
-                        <div class="text-right">{{ exchange.time }}</div>
+                        <div class="text-right">{{ exchange.time|date:'Y-m-d' }} {{ exchange.time|date:'H:i' }}</div>
                     </div>
                     <div class="panel-body">
                         <div class="text-left">Phone:{{ exchange.phone }}<br>Email:{{ exchange.email }}</div>

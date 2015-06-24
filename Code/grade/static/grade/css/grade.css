@@ -1,0 +1,20 @@
+div.grade-panel {
+    width: 80%;
+    margin: 30px 10%;
+    border-color: rgb(52,73,94);
+    border-width: 6px;
+    border-radius: 10px;
+}
+
+.grade-panel .panel-heading {
+    background-color: rgb(52,73,94);
+}
+
+.grade-panel .panel-heading p {
+    margin: 0;
+    font-weight: bolder;
+}
+
+.grade-panel form {
+    display: inline-block;
+}

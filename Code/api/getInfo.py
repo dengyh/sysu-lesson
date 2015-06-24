@@ -101,7 +101,7 @@ def getGrades(user, jwxt_user):
             lesson.add_grade_number()
             lesson.save()
 
-def getSelectResults(user, sysuer):
+def getSelectResults(sysuer):
     select_results = []
     resultsStr = sysuer.getResultOfCourseSelection()
     pattern = pattern = re.compile(r'\{"[^\}]*"\}')

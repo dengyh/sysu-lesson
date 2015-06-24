@@ -1,0 +1,90 @@
+{% extends 'base/base.html' %}
+
+{% block title %}我的成绩{% endblock %}
+
+{% block import %}
+{% load staticfiles %}
+<link href="{% static 'grade/css/grade.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block main %}
+<div class="panel panel-primary grade-panel">
+    <div class="panel-heading">
+        <span><span class="fui-user"></span> 我的成绩
+            <div class="btn-group">
+                <button class="btn btn-inverse dropdown-toggle" type="button" data-toggle="dropdown">
+                    <span id="year-span">学年度</span> <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-inverse" role="menu">
+                    <li><a href="#" class="year-option" data-value="2007-2008">2007-2008</a></li>
+                    <li><a href="#" class="year-option" data-value="2008-2009">2008-2009</a></li>
+                    <li><a href="#" class="year-option" data-value="2009-2010">2009-2010</a></li>
+                    <li><a href="#" class="year-option" data-value="2010-2011">2010-2011</a></li>
+                    <li><a href="#" class="year-option" data-value="2011-2012">2011-2012</a></li>
+                    <li><a href="#" class="year-option" data-value="2012-2013">2012-2013</a></li>
+                    <li><a href="#" class="year-option" data-value="2013-2014">2013-2014</a></li>
+                    <li><a href="#" class="year-option" data-value="2014-2015">2014-2015</a></li>
+                    <li><a href="#" class="year-option" data-value="2015-2016">2015-2016</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#" class="year-option" data-value="">All</a></li>
+                </ul>
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-inverse dropdown-toggle" type="button" data-toggle="dropdown">
+                    <span id="term-span">学期</span> <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-inverse" role="menu">
+                    <li><a href="#" class="term-option" data-value="1">小学期</a></li>
+                    <li><a href="#" class="term-option" data-value="2">第二学期</a></li>
+                    <li><a href="#" class="term-option" data-value="3">第三学期</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#" class="term-option" data-value="">All</a></li>
+                </ul>
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-inverse dropdown-toggle" type="button" data-toggle="dropdown">
+                    <span id="type-span">培养类别</span> <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-inverse" role="menu">
+                    <li><a href="#" class="type-option" data-value="01">主修</a></li>
+                    <!-- <li><a href="#" class="type-option">双专业</a></li>
+                    <li><a href="#" class="type-option">双学位</a></li>
+                    <li><a href="#" class="type-option">辅修</a></li> -->
+                    <li class="divider"></li>
+                    <li><a href="#" class="type-option" data-value="">All</a></li>
+                </ul>
+            </div>
+            <form method="get" action="">
+                <input type="hidden" name="year" value="" id="year-input">
+                <input type="hidden" name="term" value="" id="term-input">
+                <input type="hidden" name="type" value="" id="type-input">
+                <button class="btn btn-primary">确定</button>
+            </form>
+        </span>
+    </div>
+    <div class="panel-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>科目</th>
+                    <th>分数</th>
+                    <th>排名</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for item in grades %}
+                <tr>
+                    <td>{{ item.kcmc }}</td>
+                    <td>{{ item.zpcj }}</td>
+                    <td>{{ item.jxbpm }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+<div>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'grade/js/grade.js' %}"></script>
+{% endblock %}

@@ -1,5 +1,10 @@
 {% extends "base/base.html" %}
 
+<<<<<<< HEAD
+{% block title %}选课结果{% endblock %}
+
+=======
+>>>>>>> 341d6f2a4ed2c493bb4dae1f8412e3e9c9a019c1
 {% block import %}
 {% load staticfiles %}
 <link href="{% static 'lesson/css/select_result.css' %}" rel="stylesheet" type="text/css">
@@ -8,11 +13,11 @@
 {% block main %}
 
     <div class="container">
-        <h2>课程列表</h2>
+        <h2>选课结果</h2>
     </div>
     <!-- /.container -->
 
-    <div class="container center-block">
+    <div class="container center-block select-block">
     <table class="well table">
       <tr>
         <th>名称</th><!-- Course name-->
@@ -23,15 +28,13 @@
 
       {% for lesson in lessons %}
         <tr>
-          <td><a href="/lesson/{{lesson.lessonId}}">{{lesson.name}}</a></td>
-          <td>{{lesson.teacher}}</td>
-          <td>{{lesson.credit}}</td>
-          <td>{{lesson.time}}</td>
+          <td><a href="/lesson/{{lesson.kch}}/">{{lesson.kcmc}}</a></td>
+          <td>{{lesson.xm}}</td>
+          <td>{{lesson.xf}}</td>
+          <td>{{lesson.sksjdd}}</td>
         </tr>
       {% endfor %}
 
     </table>
     </div>
 {% endblock main %}
-
-
