@@ -104,7 +104,7 @@
         <dt>类型</dt>
         <dd>Public compulsory</dd>
       </dl>
-      <div><!-- Evaluate-->
+      <div id="chart-area"><!-- Evaluate-->
       </div><!-- To be continued-->
     </div>
 
@@ -117,33 +117,31 @@
             <div class="panel-footer text-left">
               <span>PML</span>
               <span>2015-06-01</span>
-              <div class="reply-btn btn btn-primary">回复</div>
-              <div>
-                <textarea row="1" class="commentArea"></textarea>
-              </div>
+              <button type="button" class="reply-btn btn btn-primary" data-toggle="modal" data-target="#inputModal">回复</button>
             </div>
           </div>
           <div class="panel panel-primary">
             <div class="panel-body text-left">I don't wanna read PPTs any more.</div>
-            <div class="panel-footer text-right">
+            <div class="panel-footer text-left">
               <span>SXD</span>
               <span>2015-06-04</span>
+              <div type="button" class="reply-btn btn btn-primary" data-toggle="modal" data-target="#inputModal">回复</div>
             </div>
           </div>
           <div class="panel panel-primary">
             <div class="panel-body text-left">Visit Lanxiang, Shangdong in search of the best mining engineers ever.</div>
-            <div class="panel-footer text-right">
+            <div class="panel-footer text-left">
               <span>PY</span>
               <span>2015-04-01</span>
+              <button type="button" class="reply-btn btn btn-primary" data-toggle="modal" data-target="#inputModal">回复</button>
             </div>
           </div>
         </div><!--Comments area end-->
         <div><!-- New comment -->
-          <textarea id="commentContent" row="3" class="commentArea" value="">
-          </textarea>
-          <div  class="btn btn-success" onclick="sendComment(commentContent.value)">评论</div>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#inputModal">评论</button>
         </div><!-- New comment end -->
       </div>
+
       <div class="col-md-4 container well">
         <div class="h4 block-heading">资源</div>
         <ul class="list-unstyled text-center">
@@ -161,13 +159,35 @@
       </div>
     </div>
 
+    <div id="testArea">
 
-          <div class="bg-info text-center">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-            <span>This is a message</span>
+      <!-- Modal -->
+      <div class="modal fade" id="inputModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">发布评论</h4>
+            </div>
+            <div class="modal-body">
+              <textarea id="commentContent" row="5" class="commentArea" value=""></textarea>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+              <button type="button" class="btn btn-success">发布</button>
+            </div>
           </div>
+        </div>
+      </div>
+      
+      <div class="bg-info text-center">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <span>This is a message</span>
+      </div>
+
+    </div>
 
     <!-- jQuery (necessary for Flat UI's JavaScript plugins) -->
     <script src="js/vendor/jquery.min.js"></script>
@@ -175,6 +195,81 @@
     <script src="js/vendor/video.js"></script>
     <script src="js/flat-ui.min.js"></script>
     <script src="js/application.js"></script>
+
+
+    <script src="js/chartjs/Chart.js"></script>
+    <script>
+    Chart.defaults.global.customTooltips = function(tooltip) {
+
+      // Tooltip Element
+        var tooltipEl = $('#chartjs-tooltip');
+
+        // Hide if no tooltip
+        if (!tooltip) {
+            tooltipEl.css({
+                opacity: 0
+            });
+            return;
+        }
+
+        // Set caret Position
+        tooltipEl.removeClass('above below');
+        tooltipEl.addClass(tooltip.yAlign);
+
+        // Set Text
+        tooltipEl.html(tooltip.text);
+
+        // Find Y Location on page
+        var top;
+        if (tooltip.yAlign == 'above') {
+            top = tooltip.y - tooltip.caretHeight - tooltip.caretPadding;
+        } else {
+            top = tooltip.y + tooltip.caretHeight + tooltip.caretPadding;
+        }
+
+        // Display, position, and set styles for font
+        tooltipEl.css({
+            opacity: 1,
+            left: tooltip.chart.canvas.offsetLeft + tooltip.x + 'px',
+            top: tooltip.chart.canvas.offsetTop + top + 'px',
+            fontFamily: tooltip.fontFamily,
+            fontSize: tooltip.fontSize,
+            fontStyle: tooltip.fontStyle,
+        });
+    };
+
+    var pieData = [{
+        value: 300,
+        color: "#F7464A",
+        highlight: "#FF5A5E",
+        label: "Red"
+    }, {
+        value: 50,
+        color: "#46BFBD",
+        highlight: "#5AD3D1",
+        label: "Green"
+    }, {
+        value: 100,
+        color: "#FDB45C",
+        highlight: "#FFC870",
+        label: "Yellow"
+    }, {
+        value: 40,
+        color: "#949FB1",
+        highlight: "#A8B3C5",
+        label: "Grey"
+    }, {
+        value: 120,
+        color: "#4D5360",
+        highlight: "#616774",
+        label: "Dark Grey"
+    }];
+
+    window.onload = function() {
+        var ctx = document.getElementById("chart-area").getContext("2d");
+        window.myPie = new Chart(ctx).Pie(pieData);
+    };
+    </script>
 
   </body>
 </html>
