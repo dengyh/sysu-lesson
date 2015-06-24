@@ -1,12 +1,19 @@
 #belowPart {
-	width: 90%;
+	width: 85%;
 	margin: auto;
 }
 
 .reply-btn {
 	float:right; 
+	position: relative;
+	top: -5px;
 }
 
 .commentArea {
 	width:100%;
+}
+
+#chart-area {
+	width: 80%;
+	margin: auto;
 }

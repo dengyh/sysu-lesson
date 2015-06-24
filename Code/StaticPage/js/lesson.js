@@ -1,56 +1,101 @@
-function sendComment(str)
+var sendComment = function()
 {
-console.log("str: " + str);
-var xmlhttp;    
-if (str=="")
-  {
-  alert("Empty content.");
-  return;
-  }
-if (window.XMLHttpRequest)
-  {// code for IE7+, Firefox, Chrome, Opera, Safari
-  xmlhttp=new XMLHttpRequest();
-  }
-else
-  {// code for IE6, IE5
-  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  }
-xmlhttp.onreadystatechange=function()
-  {
-  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+  console.log("Comment sending function.");
+  var xmlhttp;    
+  
+  lessonId = "LessonId";
+  content = "Comment";
+  target = "/comment/create/";
+  if (! content)
     {
-    document.getElementById("txtHint").innerHTML=xmlhttp.responseText;
+    alert("Empty comment.");
+    return;
     }
+  if (!lessonId) {
+    alert("Empty lessonId");
+    return;
   }
-xmlhttp.open("POST", "/comment/create/", true);
-xmlhttp.send(str);
-console.log("str: " + str);
+  
+  $.ajax({
+    method: "POST",
+    url: "",
+    data: { lessonId: lessonId, content: content},
+    timeout: 2.0,
+    success: function() {
+      alert("success");
+    }
+    .done (function() {
+      alert("Ajax sent.");
+    })
+    .fail(function() {
+      alert("Failed");
+    })
+  });
 }
 
-function shareFile(file) {
-  var xmlhttp;
-  if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
-    xmlhttp=new XMLHttpRequest();
-  }
-  else {// code for IE6, IE5
-    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  }
-  xmlhttp.open("POST", "/meterial/create/", true);
-  xmlhttp.send(file);
+var uploadFile = function() {
+  var file = $("#fileUpload")[0].files[0];
+  formData = new FormData();
+  formData.append('file', file);
+
+  $.ajax('/meterial/create/', {
+    method: 'POST',
+    contentType: false,
+    processData: false,
+    data: formData
+  });
 }
-/*
+
 window.onload = function() {
-  // alert("hello");
-  var body = document.body;
-  var msg = document.createElement("div");
-  msg.innerHTML = "This is a message";
-  msg.className += "bg-info text-center ";
-  var remove = document.createElement("span");
-  remove.attributes["data-role"] = "remove";
-  var icon = document.createElement("i");
-  icon.className += " "
-  remove.appendChild(document)
-  msg.appendChild(remove);
-  body.appendChild(msg);
+  initChart();
+  initForm();
 }
-*/
+
+
+var initChart = function() {
+  var ctx_average = $("#chart-average").get(0).getContext("2d");
+  window.myLine = new Chart(ctx_average).Line(lineChartData, {
+    responsive: false
+  });
+  var ctx_distribution = $("#chart-distribution").get(0).getContext("2d");
+  window.myPie = new Chart(ctx_distribution).Pie(pieData, {
+    responsive: false
+  });
+}
+
+var initForm = function() {
+  var form = $("#fileUploadForm")[0];
+  var file = $("#fileUpload")[0].files[0];
+  var uploadButton = $("#fileUploadButton")[0];
+
+  form.onsubmit = function(event) {
+    event.preventDefault();
+
+    // Update button text.
+    uploadButton.innerHTML = 'Uploading...';
+    uploadButton.disabled = true;
+
+    var formData = new FormData();
+    formData.append("lessonID", lessonId);
+    //formData.append("title", file.name);
+    formData.append('file', file);
+  
+    $.ajax('/meterial/create/', {
+      method: 'POST',
+      contentType: false,
+      processData: false,
+      data: formData,
+      timeout: 2.0,
+      success: function() {
+        uploadButton.InnerHTML = "上传";
+        uploadButton.disabled = false;
+        alert("上传完成");
+      },
+      fail: function() {
+        uploadButton.InnerHTML = "上传";
+        uploadButton.disabled = false;
+        alert("上传失败");
+      }
+    });
+  }
+}
