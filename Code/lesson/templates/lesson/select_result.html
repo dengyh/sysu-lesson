@@ -1,7 +1,10 @@
 {% extends "base/base.html" %}
 
+<<<<<<< HEAD
 {% block title %}选课结果{% endblock %}
 
+=======
+>>>>>>> 341d6f2a4ed2c493bb4dae1f8412e3e9c9a019c1
 {% block import %}
 {% load staticfiles %}
 <link href="{% static 'lesson/css/select_result.css' %}" rel="stylesheet" type="text/css">
@@ -20,7 +23,7 @@
         <th>名称</th><!-- Course name-->
         <th>教师</th><!-- Teacher name-->
         <th>学分</th><!-- Credit -->
-         <th>时间地点</th><!-- Location and time -->
+        <th>时间地点</th><!-- Location and time-->
       </tr>
 
       {% for lesson in lessons %}
@@ -35,4 +38,3 @@
     </table>
     </div>
 {% endblock main %}
-
