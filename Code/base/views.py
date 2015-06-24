@@ -9,7 +9,7 @@ from django.contrib.auth.models import User
 
 from api.sysu import Sysuer
 from api.parser import parseResultOfCourseSelection, parseScore
-
+from api.getInfo import getGrades
 import os
 
 # Create your views here.
@@ -55,6 +55,8 @@ def login(request):
                 user, created = User.objects.get_or_create(username=username)
                 user.set_password(password)
                 user.save()
+                if created:
+                    getGrades(user, sysuer)
                 user = auth.authenticate(username=username, password=password)
                 auth.login(request, user)
                 return redirect(nextPage)
