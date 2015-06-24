@@ -20,38 +20,41 @@
 </div>
 <!-- /.container -->
 
-<div class="container well center-block row">
-    <dl class="dl-horizontal col-sm-6">
-        <dt>描述</dt>
-        <dd>{{ lesson.description|default:'None' }}</dd>
-    </dl>
-    <dl class="dl-horizontal col-sm-6">
-        <dt>课时</dt>
-        <dd>{{ lesson.classHour }}</dd>
-    </dl>
-    <dl class="dl-horizontal col-sm-6">
-        <dt>学分</dt>
-        <dd>{{ lesson.credit }}</dd>
-    </dl>
-    <dl class="dl-horizontal col-sm-6">
-        <dt>教师</dt>
-        <dd>{{ lesson.teacher|truncatechars:20 }}</dd>
-    </dl>
-    <dl class="dl-horizontal col-sm-6">
-        <dt>校区</dt>
-        <dd>{{ lesson.get_campus_display }}</dd>
-    </dl>
-    <dl class="dl-horizontal col-sm-6">
-        <dt>培养类别</dt>
-        <dd>{{ lesson.get_teachType_display }}</dd>
-    </dl>
-    <dl class="dl-horizontal col-sm-6">
-        <dt>课程类型</dt>
-        <dd>{{ lesson.get_type_display }}</dd>
-    </dl>
-    <div><!-- Evaluate-->
-      <canvas id="chart-area"></canvas>
-    </div><!-- To be continued-->
+<div class="container well center-block">
+    <div class="row"><!-- Lesson info -->
+      <dl class="dl-horizontal col-sm-6">
+          <dt>描述</dt>
+          <dd>{{ lesson.description|default:'None' }}</dd>
+      </dl>
+      <dl class="dl-horizontal col-sm-6">
+          <dt>课时</dt>
+          <dd>{{ lesson.classHour }}</dd>
+      </dl>
+      <dl class="dl-horizontal col-sm-6">
+          <dt>学分</dt>
+          <dd>{{ lesson.credit }}</dd>
+      </dl>
+      <dl class="dl-horizontal col-sm-6">
+          <dt>教师</dt>
+          <dd>{{ lesson.teacher|truncatechars:20 }}</dd>
+      </dl>
+      <dl class="dl-horizontal col-sm-6">
+          <dt>校区</dt>
+          <dd>{{ lesson.get_campus_display }}</dd>
+      </dl>
+      <dl class="dl-horizontal col-sm-6">
+          <dt>培养类别</dt>
+          <dd>{{ lesson.get_teachType_display }}</dd>
+      </dl>
+      <dl class="dl-horizontal col-sm-6">
+          <dt>课程类型</dt>
+          <dd>{{ lesson.get_type_display }}</dd>
+      </dl>
+    </div>
+    <div class="row"><!-- Chart area -->
+      <canvas class="col-md-6" id="chart-average"></canvas>
+      <canvas class="col-md-6" id="chart-distribution"></canvas>
+    </div>
 </div>
 
 <div id="belowPart" class="row container">
@@ -125,10 +128,10 @@
 <script>
     var randomScalingFactor = function(){ return Math.round(Math.random()*100)}; // Generate random data here, for debug only.
     lineChartData = {
-      labels : ["January","February","March","April","May","June","July"],
+      labels : ["2009", "2010", "2011", "2012", "2013", "2014", "2015"],
       datasets : [
         {
-          label: "My First dataset",
+          label: "History average grades",
           fillColor : "rgba(220,220,220,0.2)",
           strokeColor : "rgba(220,220,220,1)",
           pointColor : "rgba(220,220,220,1)",
@@ -138,8 +141,40 @@
           data : [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]  // History data here.
         },
       ]
-
     };
+
+    pieData = [
+        {
+          value: 300,
+          color:"#F7464A",
+          highlight: "#FF5A5E",
+          label: "90~100"
+        },
+        {
+          value: 50,
+          color: "#46BFBD",
+          highlight: "#5AD3D1",
+          label: "80~90"
+        },
+        {
+          value: 100,
+          color: "#FDB45C",
+          highlight: "#FFC870",
+          label: "70~80"
+        },
+        {
+          value: 40,
+          color: "#949FB1",
+          highlight: "#A8B3C5",
+          label: "60~70"
+        },
+        {
+          value: 120,
+          color: "#4D5360",
+          highlight: "#616774",
+          label: "0~60"
+        }
+      ];
   </script>
 
 {% endblock main %}

@@ -53,10 +53,12 @@ window.onload = function() {
 
 
 var initChart = function() {
-  var ctx = document.getElementById("chart-area").getContext("2d");
-  window.myLine = new Chart(ctx).Line(lineChartData, {
-    responsive: true
+  var ctx_average = $("#chart-average")[0].getContext("2d");
+  window.myLine = new Chart(ctx_average).Line(lineChartData, {
+    responsive: false
   });
+  var ctx_distribution = $("#chart-distribution")[0].getContext("2d");
+  window.myPie = new Chart(ctx_distribution).Pie(pieData);
 }
 
 var initForm = function() {
