@@ -105,6 +105,7 @@
         <dd>Public compulsory</dd>
       </dl>
       <div id="chart-area"><!-- Evaluate-->
+        ...
       </div><!-- To be continued-->
     </div>
 
@@ -151,18 +152,17 @@
           <li><a href="#" download class="col-md-6  col-sm-4 col-xs-12">Source4</a></li>
           <li><a href="#" download class="col-md-6  col-sm-4 col-xs-12">Source5</a></li>
         </ul>
-        <div class="text-center">
-          <input type="file" id="fileUpload">
-            <button type="submit" class="btn btn-success">发布</button>
-          </input>
-        </div>
+        <form class="text-center" id="fileUploadForm">
+          <input type="file" id="fileUpload" name="resource"></input>
+          <button type="submit" class="btn btn-success" id="fileUploadButton">上传</button>
+        </form>
       </div>
     </div>
 
     <div id="testArea">
 
       <!-- Modal -->
-      <div class="modal fade" id="inputModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <form class="modal fade" id="inputModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -174,11 +174,11 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-              <button type="button" class="btn btn-success">发布</button>
+              <button type="button" class="btn btn-success" onclick="sendComment()" id="commentPublishButton" >发布</button>
             </div>
           </div>
         </div>
-      </div>
+      </form>
       
       <div class="bg-info text-center">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -196,79 +196,8 @@
     <script src="js/flat-ui.min.js"></script>
     <script src="js/application.js"></script>
 
-
-    <script src="js/chartjs/Chart.js"></script>
-    <script>
-    Chart.defaults.global.customTooltips = function(tooltip) {
-
-      // Tooltip Element
-        var tooltipEl = $('#chartjs-tooltip');
-
-        // Hide if no tooltip
-        if (!tooltip) {
-            tooltipEl.css({
-                opacity: 0
-            });
-            return;
-        }
-
-        // Set caret Position
-        tooltipEl.removeClass('above below');
-        tooltipEl.addClass(tooltip.yAlign);
-
-        // Set Text
-        tooltipEl.html(tooltip.text);
-
-        // Find Y Location on page
-        var top;
-        if (tooltip.yAlign == 'above') {
-            top = tooltip.y - tooltip.caretHeight - tooltip.caretPadding;
-        } else {
-            top = tooltip.y + tooltip.caretHeight + tooltip.caretPadding;
-        }
-
-        // Display, position, and set styles for font
-        tooltipEl.css({
-            opacity: 1,
-            left: tooltip.chart.canvas.offsetLeft + tooltip.x + 'px',
-            top: tooltip.chart.canvas.offsetTop + top + 'px',
-            fontFamily: tooltip.fontFamily,
-            fontSize: tooltip.fontSize,
-            fontStyle: tooltip.fontStyle,
-        });
-    };
-
-    var pieData = [{
-        value: 300,
-        color: "#F7464A",
-        highlight: "#FF5A5E",
-        label: "Red"
-    }, {
-        value: 50,
-        color: "#46BFBD",
-        highlight: "#5AD3D1",
-        label: "Green"
-    }, {
-        value: 100,
-        color: "#FDB45C",
-        highlight: "#FFC870",
-        label: "Yellow"
-    }, {
-        value: 40,
-        color: "#949FB1",
-        highlight: "#A8B3C5",
-        label: "Grey"
-    }, {
-        value: 120,
-        color: "#4D5360",
-        highlight: "#616774",
-        label: "Dark Grey"
-    }];
-
-    window.onload = function() {
-        var ctx = document.getElementById("chart-area").getContext("2d");
-        window.myPie = new Chart(ctx).Pie(pieData);
-    };
+    <script type="text/javascript">
+      lessonId = "1234567890";
     </script>
 
   </body>
