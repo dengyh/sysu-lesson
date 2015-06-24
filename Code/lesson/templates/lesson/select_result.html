@@ -16,23 +16,23 @@
 
     <div class="container center-block select-block">
     <table class="well table">
-      <tr>
-        <th>名称</th><!-- Course name-->
-        <th>教师</th><!-- Teacher name-->
-        <th>学分</th><!-- Credit -->
-        <th>时间地点</th><!-- Location and time-->
-      </tr>
+        <tr class="row">
+            <th class="col-md-3">名称</th><!-- Course name-->
+            <th class="col-md-2">教师</th><!-- Teacher name-->
+            <th class="col-md-1" class="col-md-3">学分</th><!-- Credit -->
+            <th class="col-md-6">时间地点</th><!-- Location and time-->
+        </tr>
 
       {% for lesson in lessons %}
-        <tr>
-          {% if lesson.id %}
-          <td><a href="{% url 'lesson:lesson_detail' lesson.id %}">{{lesson.kcmc}}</a></td>
-          {% else %}
-          <td>{{lesson.kcmc}}</td>
-          {% endif %}
-          <td>{{lesson.xm}}</td>
-          <td>{{lesson.xf}}</td>
-          <td>{{lesson.sksjdd}}</td>
+        <tr class="row">
+            {% if lesson.id %}
+            <td class="col-md-3"><a href="{% url 'lesson:lesson_detail' lesson.id %}">{{lesson.kcmc}}</a></td>
+            {% else %}
+            <td class="col-md-3">{{lesson.kcmc}}</td>
+            {% endif %}
+            <td class="col-md-2">{{lesson.xm}}</td>
+            <td class="col-md-1">{{lesson.xf}}</td>
+            <td class="col-md-6">{{lesson.sksjdd}}</td>
         </tr>
       {% endfor %}
 

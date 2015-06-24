@@ -17,7 +17,7 @@ def get_personal_grade(request):
     term = request.GET.get('term', '3')
     type = request.GET.get('type', '01')
     terms = ['', '小学期', '第二学期', '第三学期']
-    current = {'year':year, 'term':terms[int(term)], 'type':type}
+    current = {'year':year, 'term':terms[int(term)], 'type':type, 'termValue': term}
     user = Sysuer(username=request.user.username,
         cookie=request.session['cookie'])
     try:

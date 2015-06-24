@@ -56,7 +56,7 @@
             </div>
             <form method="get" action="">
                 <input type="hidden" name="year" value="{{current.year}}" id="year-input">
-                <input type="hidden" name="term" value="{{ current.term }}" id="term-input">
+                <input type="hidden" name="term" value="{{ current.termValue }}" id="term-input">
                 <input type="hidden" name="type" value="" id="type-input">
                 <button class="btn btn-primary">确定</button>
             </form>
@@ -67,7 +67,9 @@
             <thead>
                 <tr>
                     <th>科目</th>
+                    <th>学分</th>
                     <th>分数</th>
+                    <th>绩点</th>
                     <th>排名</th>
                 </tr>
             </thead>
@@ -75,7 +77,9 @@
             {% for item in grades %}
                 <tr>
                     <td>{{ item.kcmc }}</td>
+                    <td>{{ item.xf }}</td>
                     <td>{{ item.zpcj }}</td>
+                    <td>{{ item.jd }}</td>
                     <td>{{ item.jxbpm }}</td>
                 </tr>
             {% endfor %}
