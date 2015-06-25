@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="13.2">
+  <zoom_level>10</zoom_level>
+  <element>
+    <type>com.baselet.element.old.allinone.SequenceDiagram</type>
+    <coordinates>
+      <x>170</x>
+      <y>100</y>
+      <w>470</w>
+      <h>470</h>
+    </coordinates>
+    <panel_attributes>title: shopping online
+_customer~id1_|shopping cart~id2|system~id3
+id1-&gt;id2:id1,id2:create shopping cart
+iframe{:loop
+id1-&gt;id2:id2:add goods
+id2-&gt;id3:id2,id3:query amount available
+iframe}
+id1-&gt;id2:id1,id2:finish selection
+id2-&gt;&gt;&gt;id3:id2,id3: create order
+id3-&gt;&gt;&gt;id1:id1,id3: creating order
+id1-&gt;id3:id1,id3: set address
+id1-&gt;id3:id1,id3: set payment
+id1-&gt;&gt;&gt;id3:id1,id3: submit order
+id3-&gt;&gt;&gt;id1:id1,id3: display submission status</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

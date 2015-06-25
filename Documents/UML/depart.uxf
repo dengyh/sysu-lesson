@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="13.2">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>0</x>
+      <y>120</y>
+      <w>280</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;client workstation&gt;&gt;
+:GenericPC</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>40</x>
+      <y>200</y>
+      <w>180</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;browser&gt;&gt;
+:WebBrowser</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>450</x>
+      <y>120</y>
+      <w>370</w>
+      <h>350</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;server&gt;&gt;
+:GenericPC
+{OS=CentOS 7}</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>530</x>
+      <y>320</y>
+      <w>190</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;web server&gt;&gt;
+:nginx1.6.3</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>930</x>
+      <y>130</y>
+      <w>290</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;server&gt;&gt;
+:GenericPC
+{OS=CentOS 7}</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>960</x>
+      <y>210</y>
+      <w>190</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;database&gt;&gt;
+:MariaDB5.5.37</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>210</x>
+      <y>250</y>
+      <w>340</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>HTTP</panel_attributes>
+    <additional_attributes>10.0;10.0;320.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>710</x>
+      <y>260</y>
+      <w>270</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>SQL</panel_attributes>
+    <additional_attributes>10.0;130.0;250.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>0</x>
+      <y>370</y>
+      <w>280</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;client workstation&gt;&gt;
+:Smartphone</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>40</x>
+      <y>440</y>
+      <w>180</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;OS&gt;&gt;
+:Android 4.4W(API 20)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>210</x>
+      <y>380</y>
+      <w>340</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>HTTP</panel_attributes>
+    <additional_attributes>10.0;110.0;320.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>480</x>
+      <y>200</y>
+      <w>280</w>
+      <h>250</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;execution environment&gt;&gt;
+:python2.7.5,
+MySQL-python1.2.3, 
+Django1.8.2,
+uWSGI2.0.10</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
