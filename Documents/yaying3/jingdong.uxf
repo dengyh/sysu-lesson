@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="13.2">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>540</x>
+      <y>370</y>
+      <w>180</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>DeliveryAddress
+--
+ -address:string
+ -phone:string
+--
+ +setAddress(string):bool
+ +setPhone(string):bool
+ +getAddress():void
+ +getPhone():void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>460</x>
+      <y>130</y>
+      <w>260</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>User
+--
+ -name:string
+ -password:string
+--
+ +operatorShoppingCart():void
+ +moveToShoopingCart(Product):void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>80</x>
+      <y>130</y>
+      <w>310</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>ShoppingCart
+--
+ -selectedOrders:Array&lt;Order&gt;
+--
+ +selectOrdersFromList(OrderList):Array&lt;order&gt;
+ +paySelectedOrders():void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>480</x>
+      <y>510</y>
+      <w>240</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>Payment
+--
+ -amount:int
+ -wayOfPayment:char
+--
+ ++ChooseWayOfPayment():char</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>120</x>
+      <y>460</y>
+      <w>220</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>Order
+--
+ -productName:string
+ -stateOfOrder:char
+ -productDetail:ProductDetail</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>140</x>
+      <y>330</y>
+      <w>170</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>OrderList
+--
+ -orderList:Array&lt;Order&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>330</x>
+      <y>260</y>
+      <w>110</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>ProductDetail
+--
+ -color:char
+ -size:int
+ -type:char
+ -price:float
+ -character:char</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>380</x>
+      <y>150</y>
+      <w>100</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+m1=1
+m2=1
+manage</panel_attributes>
+    <additional_attributes>80.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>210</x>
+      <y>210</y>
+      <w>70</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+m1=1
+m2=1
+part of</panel_attributes>
+    <additional_attributes>10.0;120.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>210</x>
+      <y>370</y>
+      <w>70</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+m1=0...n
+m2=1
+part of</panel_attributes>
+    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>450</x>
+      <y>260</y>
+      <w>270</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>DeliveryList
+--
+ -listOfAddress:Array&lt;DeliveryAddress&gt;
+--
+ +AddAddress(DeliveryAddress):bool</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>330</x>
+      <y>460</y>
+      <w>230</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+m1=1
+m2=1
+part of</panel_attributes>
+    <additional_attributes>10.0;20.0;210.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>330</x>
+      <y>510</y>
+      <w>170</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+m1=1
+m2=1
+part of</panel_attributes>
+    <additional_attributes>10.0;20.0;150.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>320</x>
+      <y>370</y>
+      <w>30</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>610</x>
+      <y>320</y>
+      <w>30</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>0</x>
+      <y>190</y>
+      <w>140</w>
+      <h>360</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+m1=1
+r1=professor
+m2=1..n
+r2=student
+choose</panel_attributes>
+    <additional_attributes>80.0;20.0;30.0;20.0;30.0;330.0;120.0;330.0</additional_attributes>
+  </element>
+</diagram>
