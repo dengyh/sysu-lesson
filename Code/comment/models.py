@@ -10,7 +10,7 @@ class Comment(models.Model):
     user = models.ForeignKey(User)
     lesson = models.ForeignKey(Lesson)
     content = models.TextField(null = True, blank = True)
-    time = models.DateTimeField()
+    time = models.DateTimeField(auto_now_add=True)
     name = models.CharField(max_length=64, default='Sysuer')
     follow = models.ForeignKey('self', null = True, blank = True)
 

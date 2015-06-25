@@ -1,14 +1,19 @@
 #belowPart {
-	width: 85%;
-	margin: auto;
+    width: 85%;
+    margin: auto;
 }
 
 .reply-btn {
-	float:right; 
-	position: relative;
-	top: -5px;
+    float:right; 
+    position: relative;
+    top: -5px;
 }
 
 .commentArea {
-	width:100%;
+    width:100%;
+}
+
+#file-upload-iframe,
+#comment-iframe {
+    display: none;
 }

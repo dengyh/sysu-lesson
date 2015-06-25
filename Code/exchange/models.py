@@ -14,7 +14,7 @@ class Exchange(models.Model):
     email = models.EmailField(max_length = 64)
     description = models.TextField(null = True, blank = True)
     deadline = models.DateTimeField(null = True, blank = True)
-    time = models.DateTimeField('published time')
+    time = models.DateTimeField(auto_now_add=True)
     finished = models.BooleanField(default=False)
 
     def finish(self):
